@@ -243,9 +243,7 @@ export function Layout() {
           <p className="footer__fine">
             Career advisory is an independent professional service. No interview, placement, Board
             appointment, executive appointment, or employment outcome is guaranteed. Purchasing
-            advisory services is never a condition of recruitment consideration. ContactOut, where
-            used, is a professional sourcing/research platform — not an employer of {practice.name}{" "}
-            or {practice.brand}.
+            advisory services is never a condition of recruitment consideration.
           </p>
           <div className="footer__bar">
             <span>
