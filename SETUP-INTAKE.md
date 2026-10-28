@@ -17,8 +17,11 @@ In the Vercel project for this site:
 | `RESEND_API_KEY` | your Resend API key |
 | `CONTACT_TO` | `joelfacco.positioning@gmail.com` |
 | `RESEND_FROM` | optional; default uses Resend test sender |
+| `VITE_SITE_URL` / `SITE_URL` | optional until a custom domain is live — see `SETUP-DOMAIN.md` |
 
 Redeploy after saving variables.
+
+Successful submits also send a short acknowledgement to the visitor’s email when a reply address is provided.
 
 ## 3. Confirm
 

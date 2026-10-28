@@ -18,6 +18,30 @@ type EnquiryBody = {
 };
 
 const MAX_ATTACHMENT_BYTES = 4.2 * 1024 * 1024;
+const RATE_WINDOW_MS = 60 * 60 * 1000;
+const RATE_MAX = 8;
+
+/** Soft per-instance rate limit (resets on cold starts). */
+const recentHits = new Map<string, number[]>();
+
+function clientKey(req: VercelRequest): string {
+  const forwarded = req.headers["x-forwarded-for"];
+  const raw = Array.isArray(forwarded) ? forwarded[0] : forwarded || "";
+  const ip = raw.split(",")[0]?.trim() || req.socket?.remoteAddress || "unknown";
+  return ip.slice(0, 80);
+}
+
+function isRateLimited(key: string): boolean {
+  const now = Date.now();
+  const prior = (recentHits.get(key) || []).filter((t) => now - t < RATE_WINDOW_MS);
+  if (prior.length >= RATE_MAX) {
+    recentHits.set(key, prior);
+    return true;
+  }
+  prior.push(now);
+  recentHits.set(key, prior);
+  return false;
+}
 
 function readBody(req: VercelRequest): EnquiryBody {
   if (typeof req.body === "string") {
@@ -28,6 +52,44 @@ function readBody(req: VercelRequest): EnquiryBody {
     }
   }
   return (req.body ?? {}) as EnquiryBody;
+}
+
+async function sendResend(
+  apiKey: string,
+  payload: Record<string, unknown>,
+): Promise<{ ok: true } | { ok: false; status: number; detail: string }> {
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const detail = await response.text();
+    return { ok: false, status: response.status, detail };
+  }
+  return { ok: true };
+}
+
+function confirmationText(name: string, type: string): string {
+  const who = name && name !== "Website visitor" ? name.split(" ")[0] : "there";
+  return [
+    `Dear ${who},`,
+    "",
+    "Thank you for writing to VisionSpark Advisors.",
+    "",
+    `This confirms that your ${type.replace(/-/g, " ")} was received. It will be read personally and treated as confidential.`,
+    "",
+    "Requesting an assessment or sending an enquiry does not create a paid engagement, and no interview, placement, Board appointment, executive appointment, or employment outcome is guaranteed. Career advisory remains separate from recruitment consideration.",
+    "",
+    "If a reply is appropriate, you will hear from Fakorede Joel on this thread.",
+    "",
+    "VisionSpark Advisors",
+    "Fakorede Joel",
+  ].join("\n");
 }
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
@@ -42,6 +104,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ ok: false, error: "Method not allowed." });
   }
 
+  if (isRateLimited(clientKey(req))) {
+    return res.status(429).json({
+      ok: false,
+      error: "Too many submissions from this network. Please try again later.",
+      code: "RATE_LIMITED",
+    });
+  }
+
   const body = readBody(req);
 
   if (body.honeypot) {
@@ -52,6 +122,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   const apiKey = process.env.RESEND_API_KEY || "";
   const from =
     process.env.RESEND_FROM || "VisionSpark Advisors <onboarding@resend.dev>";
+  const siteUrl = (process.env.SITE_URL || "https://visionsparkadvisors.vercel.app").replace(
+    /\/$/,
+    "",
+  );
 
   if (!to || !apiKey) {
     return res.status(503).json({
@@ -124,18 +198,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const response = await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(payload),
-    });
+    const primary = await sendResend(apiKey, payload);
 
-    if (!response.ok) {
-      const detail = await response.text();
-      console.error("Resend error", response.status, detail);
+    if (!primary.ok) {
+      console.error("Resend error", primary.status, primary.detail);
       return res.status(502).json({
         ok: false,
         error: "Email provider rejected the message. Try again shortly.",
@@ -143,7 +209,22 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       });
     }
 
-    return res.status(200).json({ ok: true });
+    if (replyTo) {
+      const confirm = await sendResend(apiKey, {
+        from,
+        to: [replyTo],
+        subject: `We received your message — VisionSpark Advisors`,
+        text: confirmationText(name, type),
+        headers: {
+          "X-Entity-Ref": "visionspark-intake-ack",
+        },
+      });
+      if (!confirm.ok) {
+        console.error("Confirmation email failed", confirm.status, confirm.detail);
+      }
+    }
+
+    return res.status(200).json({ ok: true, siteUrl });
   } catch (error) {
     console.error("Intake failure", error);
     return res.status(500).json({

@@ -33,7 +33,9 @@ export const practice = {
   supporting:
     "Executive Career Strategy · Independent Recruitment · Resume/CV Positioning · LinkedIn Strategy · Executive Job Search",
   trustMarks: ["Confidential", "Professional", "Evidence-Led", "Candidate-Centered"],
-  siteUrl: "https://visionsparkadvisors.vercel.app",
+  /** Override at build time with VITE_SITE_URL (custom domain). */
+  siteUrl: (import.meta.env.VITE_SITE_URL as string | undefined)?.replace(/\/$/, "") ||
+    "https://visionsparkadvisors.vercel.app",
   /** Relative to /public. */
   portrait: "/portrait.jpg",
   portraitAvailable: true,

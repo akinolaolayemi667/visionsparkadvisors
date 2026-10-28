@@ -18,8 +18,15 @@ export const privacyPolicy = {
     {
       heading: "What is collected",
       paragraphs: [
-        "Information you choose to provide through enquiry, assessment, checklist, employer or candidacy forms — such as name, email, professional context and messages — is used to respond and to judge whether the practice can help.",
-        "Form drafts are composed in your browser. Until you send a message, the content stays on your device.",
+        "Information you choose to provide through enquiry, assessment, checklist, employer or candidacy forms — such as name, email, professional context, messages and, where you attach one, a résumé/CV — is used to respond and to judge whether the practice can help.",
+        "Form drafts are composed in your browser. Until you submit a form, the content stays on your device. After you submit, the message is transmitted to the practice so it can be read and answered.",
+      ],
+    },
+    {
+      heading: "How information is delivered",
+      paragraphs: [
+        "Submitted forms are sent by email to the practice through Resend, an email delivery service acting as a processor for that transmission. A short acknowledgement may also be emailed to the address you provide.",
+        "Résumé/CV files selected on the assessment form may be included as email attachments when size limits allow. Files are not stored in a public document library on this website.",
       ],
     },
     {
