@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Assurance, CtaBand, IncludeList, PageHeader } from "../components/Blocks";
+import { BeforeAfterPositioning, PositioningDiagnostic } from "../components/PositioningSections";
 import { cta } from "../config";
 import { services, type Service } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -11,11 +12,12 @@ export function ServicePage({ service }: { service: Service }) {
   );
 
   const related = services.filter((item) => item.id !== service.id).slice(0, 3);
+  const showPositioningExtras = service.id === "positioning" || service.id === "resume";
 
   return (
     <>
       <PageHeader kicker={service.kicker} title={service.title} lede={service.summary} />
-      <section className="page-section">
+      <section className="page-section" style={showPositioningExtras ? { paddingBottom: 0 } : undefined}>
         <div className="container stack">
           <div className="prose prose--wide">
             <p>{service.body}</p>
@@ -30,6 +32,14 @@ export function ServicePage({ service }: { service: Service }) {
                 advisory services. No interview, placement or appointment is guaranteed.
               </p>
             )}
+            {showPositioningExtras ? (
+              <p>
+                See also the{" "}
+                <Link to="/how-it-works#journey">candidate journey</Link>,{" "}
+                <Link to="/how-it-works#diagnostic">positioning diagnostic</Link>, and{" "}
+                <Link to="/how-it-works#before-after">before vs after</Link> examples.
+              </p>
+            ) : null}
           </div>
 
           <div>
@@ -68,6 +78,12 @@ export function ServicePage({ service }: { service: Service }) {
           </div>
         </div>
       </section>
+      {showPositioningExtras ? (
+        <>
+          <PositioningDiagnostic />
+          <BeforeAfterPositioning />
+        </>
+      ) : null}
       <CtaBand
         title={
           service.employer

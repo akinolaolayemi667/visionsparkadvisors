@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import { Assurance, CtaBand, PageHeader } from "../components/Blocks";
+import {
+  BeforeAfterPositioning,
+  CandidateJourney,
+  PositioningDiagnostic,
+} from "../components/PositioningSections";
 import { cta } from "../config";
 import { howItWorksSteps } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -7,7 +12,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 export function HowItWorks() {
   usePageMeta(
     "How It Works — Fakorede Joel",
-    "How a confidential engagement with Fakorede Joel proceeds — from first conversation through assessment, scope, positioning and market communication.",
+    "A structured approach to career positioning: discovery, diagnostic assessment, strategy, career assets, search, market execution, and interview support.",
   );
 
   return (
@@ -17,17 +22,22 @@ export function HowItWorks() {
         title="Clear from the first conversation."
         lede="Whether you are requesting a career assessment or discussing a talent requirement, the process is deliberate, confidential and separated by purpose."
       />
-      <section className="page-section">
+
+      <section className="page-section" style={{ paddingBottom: 0 }}>
         <div className="container stack">
-          <ol className="steps">
-            {howItWorksSteps.map((step) => (
-              <li className="step" key={step.n}>
-                <span>{step.n}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </li>
-            ))}
-          </ol>
+          <div>
+            <p className="kicker">Engagement overview</p>
+            <h2 className="section-title">How an engagement begins</h2>
+            <ol className="steps" style={{ marginTop: 18 }}>
+              {howItWorksSteps.map((step) => (
+                <li className="step" key={step.n}>
+                  <span>{step.n}</span>
+                  <h3>{step.title}</h3>
+                  <p>{step.text}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
 
           <div className="two">
             <article className="path-card">
@@ -53,10 +63,24 @@ export function HowItWorks() {
               </Link>
             </article>
           </div>
+        </div>
+      </section>
 
+      <section className="section">
+        <div className="container">
+          <CandidateJourney />
+        </div>
+      </section>
+
+      <PositioningDiagnostic />
+      <BeforeAfterPositioning />
+
+      <section className="section section--tint">
+        <div className="container">
           <Assurance />
         </div>
       </section>
+
       <CtaBand />
     </>
   );

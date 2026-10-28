@@ -1,5 +1,10 @@
 import { Link } from "react-router-dom";
 import { Assurance, CtaBand, SectionHead } from "../components/Blocks";
+import {
+  BeforeAfterPositioning,
+  CandidateJourney,
+  PositioningDiagnostic,
+} from "../components/PositioningSections";
 import { cta, practice } from "../config";
 import { audienceCards, authorityFlow, services } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -162,7 +167,11 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section">
+      <CandidateJourney compact />
+      <PositioningDiagnostic compact />
+      <BeforeAfterPositioning />
+
+      <section className="section section--tint">
         <div className="container">
           <SectionHead
             kicker="Trust"
