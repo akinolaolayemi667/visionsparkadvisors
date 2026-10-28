@@ -72,8 +72,8 @@ export function Contact() {
   const content = copy[active];
 
   usePageMeta(
-    "Contact — Fakorede Joel",
-    "Request a career assessment, discuss a talent requirement, or submit a résumé/CV. Confidential correspondence with Fakorede Joel.",
+    "Contact — Joel Facco",
+    "Request a career assessment, discuss a talent requirement, or submit a résumé/CV. Confidential correspondence with Joel Facco.",
   );
 
   return (

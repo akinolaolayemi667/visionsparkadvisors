@@ -9,7 +9,7 @@ export function Insights() {
   const [category, setCategory] = useState<string>("All");
 
   usePageMeta(
-    "Insights — Fakorede Joel",
+    "Insights — Joel Facco",
     "Professional insights on executive careers, résumé/CV strategy, LinkedIn positioning, Board careers, job-search strategy, executive search and recruitment.",
     { path: "/insights" },
   );

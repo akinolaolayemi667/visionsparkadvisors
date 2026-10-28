@@ -15,6 +15,7 @@ import {
   trustIndicators,
   workMethod,
 } from "../engagement";
+import { publishWorkSamples, workSamples, workSamplesIntro } from "../workSamples";
 
 export function ApproachPillars({ compact = false }: { compact?: boolean }) {
   return (
@@ -221,6 +222,52 @@ export function TestimonialsSection() {
             </div>
           </div>
         ) : null}
+      </div>
+    </section>
+  );
+}
+
+export function SampleWorksSection() {
+  const ready = publishWorkSamples && workSamples.length > 0;
+  if (!ready) return null;
+
+  return (
+    <section className="section" id="sample-works">
+      <div className="container">
+        <SectionHead
+          kicker={workSamplesIntro.kicker}
+          title="Sample works from real positioning engagements."
+          deck="PDF résumés and Board biographies alongside engagement write-ups — authorised for demonstration, without invented placement claims."
+        />
+        <ul className="sample-grid">
+          {workSamples.map((sample) => (
+            <li key={sample.id} className="sample-card">
+              <p className="kicker">{sample.instrument}</p>
+              <h3>{sample.client}</h3>
+              <p>{sample.summary}</p>
+              <div className="sample-card__actions">
+                {sample.pdf ? (
+                  <a className="btn btn--small" href={sample.pdf} target="_blank" rel="noopener noreferrer">
+                    View PDF
+                  </a>
+                ) : null}
+                {sample.caseStudySlug ? (
+                  <Link
+                    className={sample.pdf ? "btn btn--ghost btn--small" : "btn btn--small"}
+                    to={`/case-studies/${sample.caseStudySlug}`}
+                  >
+                    Write-up
+                  </Link>
+                ) : null}
+              </div>
+            </li>
+          ))}
+        </ul>
+        <p className="more-link">
+          <Link className="text-link" to="/sample-works">
+            All sample works
+          </Link>
+        </p>
       </div>
     </section>
   );

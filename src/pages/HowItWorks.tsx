@@ -16,7 +16,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function HowItWorks() {
   usePageMeta(
-    "How It Works — Fakorede Joel",
+    "How It Works — Joel Facco",
     "A structured approach to career positioning: discovery, diagnostic assessment, strategy, career assets, search, market execution, and interview support.",
   );
 

@@ -85,10 +85,10 @@ function confirmationText(name: string, type: string): string {
     "",
     "Requesting an assessment or sending an enquiry does not create a paid engagement, and no interview, placement, Board appointment, executive appointment, or employment outcome is guaranteed. Career advisory remains separate from recruitment consideration.",
     "",
-    "If a reply is appropriate, you will hear from Fakorede Joel on this thread.",
+    "If a reply is appropriate, you will hear from Joel Facco on this thread.",
     "",
     "VisionSpark Advisors",
-    "Fakorede Joel",
+    "Joel Facco",
   ].join("\n");
 }
 

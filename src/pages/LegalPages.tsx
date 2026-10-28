@@ -10,8 +10,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Privacy() {
   usePageMeta(
-    "Privacy Policy — Fakorede Joel",
-    "How enquiries and professional information shared with Fakorede Joel are handled. Working template pending final approval.",
+    "Privacy Policy — Joel Facco",
+    "How enquiries and professional information shared with Joel Facco are handled. Working template pending final approval.",
   );
   return (
     <LegalDoc
@@ -24,8 +24,8 @@ export function Privacy() {
 
 export function Terms() {
   usePageMeta(
-    "Terms of Use — Fakorede Joel",
-    "Website terms for Fakorede Joel’s practice site. Working template — no fabricated compliance claims.",
+    "Terms of Use — Joel Facco",
+    "Website terms for Joel Facco’s practice site. Working template — no fabricated compliance claims.",
   );
   return (
     <LegalDoc title={termsOfUse.title} updated={termsOfUse.updated} sections={termsOfUse.sections} />
@@ -34,8 +34,8 @@ export function Terms() {
 
 export function Cookies() {
   usePageMeta(
-    "Cookie Policy — Fakorede Joel",
-    "Cookie and browser-storage practices for the Fakorede Joel website. Working template.",
+    "Cookie Policy — Joel Facco",
+    "Cookie and browser-storage practices for the Joel Facco website. Working template.",
   );
   return (
     <LegalDoc
@@ -48,7 +48,7 @@ export function Cookies() {
 
 export function CandidateNotice() {
   usePageMeta(
-    "Recruitment & Candidate Notice — Fakorede Joel",
+    "Recruitment & Candidate Notice — Joel Facco",
     "How recruitment outreach and candidate information relate to advisory services. ContactOut is a sourcing platform, not an employer.",
   );
   return (
@@ -63,7 +63,7 @@ export function CandidateNotice() {
 
 export function AdvisoryTerms() {
   usePageMeta(
-    "Career Advisory Terms — Fakorede Joel",
+    "Career Advisory Terms — Joel Facco",
     "Scope, deliverables, confidentiality, guarantees and the distinction between recruitment and advisory. Editable placeholders until approved.",
   );
   return (

@@ -67,8 +67,8 @@ const outreachFaqs = [
 
 export function ExecutiveOpportunities() {
   usePageMeta(
-    "Executive Opportunities — Fakorede Joel",
-    "You received a message from Fakorede Joel. Verify who I am, how outreach works, how information is used, and how recruitment differs from career advisory.",
+    "Executive Opportunities — Joel Facco",
+    "You received a message from Joel Facco. Verify who I am, how outreach works, how information is used, and how recruitment differs from career advisory.",
   );
 
   return (

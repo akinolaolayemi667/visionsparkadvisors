@@ -15,7 +15,7 @@ function primaryFor(service: Service) {
 }
 
 export function ServicePage({ service }: { service: Service }) {
-  usePageMeta(`${service.title} — Fakorede Joel`, service.summary, {
+  usePageMeta(`${service.title} — Joel Facco`, service.summary, {
     path: service.path,
   });
 

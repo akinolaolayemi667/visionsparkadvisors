@@ -5,7 +5,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function EngagementPath() {
   usePageMeta(
-    "Engagement Path — Fakorede Joel",
+    "Engagement Path — Joel Facco",
     "How assessment leads to recommendation, agreement and work. Payment is never charged simply for requesting an assessment.",
   );
 

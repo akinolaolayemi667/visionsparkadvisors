@@ -11,7 +11,7 @@ export const practice = {
   /** Practice / site brand. */
   brand: "VisionSpark Advisors",
   /** Principal. */
-  name: "Fakorede Joel",
+  name: "Joel Facco",
   role: "Executive Career Strategist | Independent Recruiter",
   extendedRole: [
     "Independent Recruiter",
@@ -39,7 +39,7 @@ export const practice = {
   /** Relative to /public. */
   portrait: "/portrait.jpg",
   portraitAvailable: true,
-  portraitAlt: "Professional portrait of Fakorede Joel, VisionSpark Advisors",
+  portraitAlt: "Professional portrait of Joel Facco, VisionSpark Advisors",
   logo: "/logo.png",
   /** Cream/gold treatment for navy fields (hero). */
   logoOnDark: "/logo-on-dark.png",

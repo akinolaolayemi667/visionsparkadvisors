@@ -33,8 +33,8 @@ const expectations = [
 
 export function About() {
   usePageMeta(
-    "About — VisionSpark Advisors | Fakorede Joel",
-    "VisionSpark Advisors — where talent, positioning and opportunity meet. Fakorede Joel works at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy.",
+    "About — VisionSpark Advisors | Joel Facco",
+    "VisionSpark Advisors — where talent, positioning and opportunity meet. Joel Facco works at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy.",
     { path: "/about" },
   );
 

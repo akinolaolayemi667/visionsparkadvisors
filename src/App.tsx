@@ -27,6 +27,7 @@ import { NotFound } from "./pages/NotFound";
 import { Packages } from "./pages/Packages";
 import { Principles } from "./pages/Principles";
 import { Recruitment } from "./pages/Recruitment";
+import { SampleWorks } from "./pages/SampleWorks";
 import {
   JobSearchPage,
   LinkedInPage,
@@ -57,6 +58,7 @@ export default function App() {
         <Route path="client-portal" element={<ClientPortal />} />
         <Route path="case-studies" element={<CaseStudies />} />
         <Route path="case-studies/:slug" element={<CaseStudyArticle />} />
+        <Route path="sample-works" element={<SampleWorks />} />
         <Route path="insights" element={<Insights />} />
         <Route path="insights/:slug" element={<InsightArticle />} />
         <Route path="faq" element={<Faq />} />

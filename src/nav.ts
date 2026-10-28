@@ -40,6 +40,8 @@ export const footerLegal = [
 export const footerMore = [
   { to: "/how-it-works", label: "How It Works" },
   { to: "/packages", label: "Packages" },
+  { to: "/sample-works", label: "Sample Works" },
+  { to: "/case-studies", label: "Case Studies" },
   { to: "/assessment", label: "Career Assessment" },
   { to: "/executive-positioning-checklist", label: "Positioning Checklist" },
   { to: "/executive-opportunities", label: "Outreach verification" },

@@ -4,7 +4,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Principles() {
   usePageMeta(
-    "Principles — Fakorede Joel",
+    "Principles — Joel Facco",
     "Recruitment and candidate-paid career advisory are separate. No interview, placement, or appointment is guaranteed. Purchasing advice is never a condition of consideration.",
   );
 

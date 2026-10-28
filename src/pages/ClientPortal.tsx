@@ -5,7 +5,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function ClientPortal() {
   usePageMeta(
-    "Client Portal — Fakorede Joel",
+    "Client Portal — Joel Facco",
     "Future-ready structure for a secure client portal. Not live until a secure platform is connected.",
   );
 

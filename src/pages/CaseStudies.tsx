@@ -7,6 +7,7 @@ import {
   publishCaseStudies,
 } from "../engagement";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { workSamples } from "../workSamples";
 import { NotFound } from "./NotFound";
 
 export function CaseStudies() {
@@ -88,11 +89,13 @@ export function CaseStudyArticle() {
   const study = caseStudies.find((item) => item.slug === slug);
 
   usePageMeta(
-    study ? `${study.profile} — Case Study` : "Case study not found — Fakorede Joel",
+    study ? `${study.profile} — Case Study` : "Case study not found — Joel Facco",
     study?.challenge ?? "This case study is not published.",
   );
 
   if (!publishCaseStudies || !study) return <NotFound />;
+
+  const relatedSample = workSamples.find((sample) => sample.caseStudySlug === study.slug);
 
   return (
     <article className="article">
@@ -119,12 +122,21 @@ export function CaseStudyArticle() {
             </div>
           ) : null}
         </dl>
+        {relatedSample?.pdf ? (
+          <p className="quiet-note" style={{ marginTop: 28 }}>
+            Related demonstration PDF:{" "}
+            <a href={relatedSample.pdf} target="_blank" rel="noopener noreferrer">
+              {relatedSample.instrument} — {relatedSample.client}
+            </a>
+          </p>
+        ) : null}
         <footer className="article__end">
           <Link className="btn" to={cta.assessment.href}>
             {cta.assessment.label}
           </Link>
           <div className="article__nav">
             <Link to="/case-studies">All case studies</Link>
+            <Link to="/sample-works">Sample works</Link>
           </div>
         </footer>
       </div>

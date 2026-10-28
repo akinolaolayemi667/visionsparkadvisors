@@ -11,7 +11,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Packages() {
   usePageMeta(
-    "Packages — Fakorede Joel",
+    "Packages — Joel Facco",
     "Career Foundation, Executive Positioning, and Executive Search Strategy Partnership. Scope and pricing depend on career level, materials, complexity and engagement requirements.",
   );
 

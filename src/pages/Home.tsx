@@ -16,6 +16,7 @@ import {
   CaseStudiesSection,
   ConfidentialitySection,
   PackagesSection,
+  SampleWorksSection,
   TestimonialsSection,
   TrustSection,
   WorkMethodSection,
@@ -26,7 +27,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Home() {
   usePageMeta(
-    "VisionSpark Advisors — Fakorede Joel | Executive Career Strategist & Independent Recruiter",
+    "VisionSpark Advisors — Joel Facco | Executive Career Strategist & Independent Recruiter",
     "VisionSpark Advisors sits at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy — evidence-led and confidential.",
     { path: "/" },
   );
@@ -106,6 +107,7 @@ export function Home() {
       <ConfidentialitySection />
       <WorkMethodSection />
       <TestimonialsSection />
+      <SampleWorksSection />
       <CaseStudiesSection />
 
       <section className="section">

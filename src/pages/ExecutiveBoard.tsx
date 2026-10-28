@@ -59,7 +59,7 @@ const sections = [
 
 export function ExecutiveBoard() {
   usePageMeta(
-    "Executive & Board Positioning — Fakorede Joel",
+    "Executive & Board Positioning — Joel Facco",
     "Positioning leadership for the C-Suite, Boardroom and beyond — enterprise leadership, governance, commercial impact and Board-ready narratives.",
   );
 

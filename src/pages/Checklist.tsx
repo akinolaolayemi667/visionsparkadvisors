@@ -36,7 +36,7 @@ export function Checklist() {
   const [sending, setSending] = useState(false);
 
   usePageMeta(
-    `${checklistMeta.title} — Fakorede Joel`,
+    `${checklistMeta.title} — Joel Facco`,
     checklistMeta.subtitle,
   );
 

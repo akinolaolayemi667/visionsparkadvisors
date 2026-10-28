@@ -30,7 +30,7 @@ export function Agreement() {
   const [copied, setCopied] = useState(false);
 
   usePageMeta(
-    "Engagement Agreement — Fakorede Joel",
+    "Engagement Agreement — Joel Facco",
     "Request a written engagement confirmation. Fees and scope are agreed before payment; assessment requests never create a charge.",
   );
 
@@ -128,7 +128,7 @@ export function Agreement() {
           lede={
             fallback
               ? "Direct delivery is temporarily unavailable. Copy the note or open email. A written fee and scope confirmation will still be required before payment."
-              : "Fakorede Joel will reply with written scope and fee confirmation when appropriate. Payment is never taken for an assessment alone."
+              : "Joel Facco will reply with written scope and fee confirmation when appropriate. Payment is never taken for an assessment alone."
           }
         />
         <section className="page-section" style={{ paddingTop: 0 }}>

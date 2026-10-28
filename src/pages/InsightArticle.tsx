@@ -12,7 +12,7 @@ export function InsightArticle() {
   const next = index >= 0 && index < insights.length - 1 ? insights[index + 1] : undefined;
 
   usePageMeta(
-    article ? `${article.title} — Fakorede Joel` : "Page not found — Fakorede Joel",
+    article ? `${article.title} — Joel Facco` : "Page not found — Joel Facco",
     article?.dek ?? "This page is not part of the practice site.",
   );
 

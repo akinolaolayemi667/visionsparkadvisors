@@ -4,7 +4,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Assessment() {
   usePageMeta(
-    "Career Assessment — Fakorede Joel",
+    "Career Assessment — Joel Facco",
     "Request a structured career assessment. Share professional context, direction, challenges and materials. Scope and fees are agreed before advisory work begins.",
   );
 

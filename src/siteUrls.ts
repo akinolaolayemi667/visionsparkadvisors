@@ -16,6 +16,7 @@ export const sitemapPaths = [
   "/engagement-path",
   "/agreement",
   "/payment",
+  "/sample-works",
   "/case-studies",
   "/case-studies/medtech-independent-board-director",
   "/case-studies/chair-board-director-strategic-advisor",

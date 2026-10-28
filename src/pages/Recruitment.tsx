@@ -25,7 +25,7 @@ const services = [
 
 export function Recruitment() {
   usePageMeta(
-    "Independent Recruitment — Fakorede Joel",
+    "Independent Recruitment — Joel Facco",
     "Talent aligned with business direction. Independent recruitment for organizations seeking leadership and professional talent — beyond matching titles and keywords.",
   );
 

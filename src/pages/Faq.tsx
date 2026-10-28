@@ -5,7 +5,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Faq() {
   usePageMeta(
-    "FAQ — Fakorede Joel",
+    "FAQ — Joel Facco",
     "Answers on outreach, confidentiality, career assessment, Board positioning, guarantees, and how recruitment differs from career advisory.",
   );
 

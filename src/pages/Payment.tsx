@@ -18,7 +18,7 @@ export function Payment() {
   const [summary, setSummary] = useState("");
 
   usePageMeta(
-    "Payment — Fakorede Joel",
+    "Payment — Joel Facco",
     "Secure payment for agreed advisory engagements only. Requesting an assessment never creates a charge.",
   );
 

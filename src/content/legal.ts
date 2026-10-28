@@ -11,7 +11,7 @@ export const privacyPolicy = {
     {
       heading: "Purpose",
       paragraphs: [
-        "This note explains how enquiries and professional information shared with Fakorede Joel / VisionSpark Advisors are handled. It is a working template until a final policy is approved.",
+        "This note explains how enquiries and professional information shared with Joel Facco / VisionSpark Advisors are handled. It is a working template until a final policy is approved.",
         "This site does not sell personal information and does not use advertising trackers.",
       ],
     },
@@ -53,7 +53,7 @@ export const termsOfUse = {
     {
       heading: "Website",
       paragraphs: [
-        "This website describes VisionSpark Advisors, the independent practice of Fakorede Joel. Content is provided for professional information and does not create an advisory or recruitment engagement by itself.",
+        "This website describes VisionSpark Advisors, the independent practice of Joel Facco. Content is provided for professional information and does not create an advisory or recruitment engagement by itself.",
         "Requesting an assessment or sending an enquiry does not create a paid engagement and does not guarantee a response beyond professional consideration of the message.",
       ],
     },
@@ -102,8 +102,8 @@ export const candidateNotice = {
     {
       heading: "Recruitment activity",
       paragraphs: [
-        "When Fakorede Joel is engaged in independent recruitment, candidates may be identified, assessed or contacted in relation to genuine employment opportunities or professional talent conversations.",
-        "ContactOut and similar tools, where used, are professional sourcing/research platforms. They are not the employer of Fakorede Joel.",
+        "When Joel Facco is engaged in independent recruitment, candidates may be identified, assessed or contacted in relation to genuine employment opportunities or professional talent conversations.",
+        "ContactOut and similar tools, where used, are professional sourcing/research platforms. They are not the employer of Joel Facco.",
       ],
     },
     {
