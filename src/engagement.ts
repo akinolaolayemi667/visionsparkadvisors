@@ -148,10 +148,41 @@ export type ClientReference = {
   note?: string;
 };
 
+/**
+ * Client references authorised for name + engagement type.
+ * Do not publish client phone numbers, personal emails or full documents.
+ */
 export const clientReferences: ClientReference[] = [
-  { id: "mark-jones", name: "Mark Jones" },
-  { id: "harold-wodlinger", name: "Harold Wodlinger" },
-  { id: "sonia-rose", name: "Sonia Rose" },
+  {
+    id: "harold-wodlinger",
+    name: "Harold M. Wodlinger, Ph.D.",
+    note: "Independent Board Director / MedTech executive — Board-ready CV and governance positioning",
+  },
+  {
+    id: "mark-jones",
+    name: "Mark Jones",
+    note: "Chair, Board Director and Strategic Advisor — executive materials and standalone Board Director profile",
+  },
+  {
+    id: "sonia-rose",
+    name: "Sonia Rose",
+    note: "Career positioning engagement",
+  },
+  {
+    id: "gerd-holl",
+    name: "Gerd Holl",
+    note: "International Managing Director — LinkedIn headline, About and experience positioning",
+  },
+  {
+    id: "lance-berg",
+    name: "Lance K. R. Berg, P.Eng.",
+    note: "Board & Strategic Adviser / energy executive — Board profile and value-highlight architecture",
+  },
+  {
+    id: "edward-cloues",
+    name: "Edward Cloues",
+    note: "Executive & Board biography positioning",
+  },
 ];
 
 /** Add verified testimonials (with quotes) here when supplied. */
@@ -162,6 +193,34 @@ export const publishTestimonials = false;
 
 /** When true and clientReferences exist, the name list publishes. */
 export const publishClientReferences = true;
+
+/**
+ * How VisionSpark Advisors structures executive materials.
+ * Describes method — not fabricated placement results.
+ */
+export const workMethod = {
+  kicker: "How the work is done",
+  title: "Executive materials built for how serious readers actually assess leadership.",
+  deck: "Board biographies, executive CVs and LinkedIn profiles are positioned for altitude, evidence and market relevance — never for keyword theatre or invented claims.",
+  pillars: [
+    {
+      title: "Board & Chair altitude",
+      text: "Governance, stewardship, enterprise judgment and stakeholder value are stated in the language chairs, nomination committees and search firms use.",
+    },
+    {
+      title: "Evidence architecture",
+      text: "Scale, P&L, exits, transformation, capital programmes and leadership span are selected and ordered so impact is readable under time pressure.",
+    },
+    {
+      title: "Instrument alignment",
+      text: "Résumé/CV, Board biography and LinkedIn carry one coherent career narrative — same altitude, no contradictory claims.",
+    },
+    {
+      title: "Integrity of record",
+      text: "Achievements stay inside what the career can defend. Experience, credentials and outcomes are never fabricated.",
+    },
+  ],
+};
 
 export type CaseStudy = {
   id: string;
@@ -174,11 +233,67 @@ export type CaseStudy = {
   outcome?: string;
 };
 
-/** Add verified case studies here. Leave empty until supplied. */
-export const caseStudies: CaseStudy[] = [];
+/**
+ * Engagement studies based on real VisionSpark Advisors deliverable work.
+ * Outcomes describe materials produced — not invented interviews, offers or appointments.
+ */
+export const caseStudies: CaseStudy[] = [
+  {
+    id: "medtech-board",
+    slug: "medtech-independent-board-director",
+    profile: "Independent Board Director · Chairman · MedTech Executive",
+    challenge:
+      "A deep MedTech operating and venture record needed to read clearly as Independent Director and Chair material — not only as an inventor or operator CV.",
+    assessment:
+      "Governance weight, board chairmanships, corporate exits, due diligence counsel and commercialization leadership were present in the career, but the narrative had to elevate board stewardship and shareholder-value judgment.",
+    approach:
+      "Rebuilt the materials around Independent Board Director and Chairman positioning: executive profile, key accomplishments, board and governance leadership, strategic advisory, academic contribution and intellectual property — ordered for nomination-committee and search reading.",
+    outcome:
+      "Deliverables: Board-ready executive CV and Independent Director / MedTech governance narrative. No appointment or interview outcome is claimed by the positioning work itself.",
+  },
+  {
+    id: "chair-board-profile",
+    slug: "chair-board-director-strategic-advisor",
+    profile: "Chair · Board Director · Strategic Advisor · Senior Executive Leader",
+    challenge:
+      "A long UK and international executive career across leisure, hospitality, visitor attractions and technology required a Chair / NED narrative distinct from a full operating CV.",
+    assessment:
+      "Chairmanship, enterprise transformation, P&L leadership and multi-site governance were strong; the market needed a concise Board Director profile alongside executive materials.",
+    approach:
+      "Produced Chair and Board Director positioning with a standalone Board Director profile: governance themes, enterprise value creation, transformation evidence and advisory readiness — written for Board and Advisory Board conversations.",
+    outcome:
+      "Deliverables: Executive positioning materials and a standalone Board Director profile. Placement or appointment results are not invented for this site.",
+  },
+  {
+    id: "linkedin-international-md",
+    slug: "international-executive-linkedin-positioning",
+    profile: "International Executive · Managing Director · Regional Leadership · Executive Advisor",
+    challenge:
+      "An active international MD / regional leadership career needed LinkedIn positioning that preserved current employment accuracy while opening Executive Advisory and Board visibility.",
+    assessment:
+      "Headline and About risked either understating international P&L scale or implying an employment change. Advisory ambition belonged in Headline and About — not as a fabricated current Experience entry.",
+    approach:
+      "Refined LinkedIn headline, About, experience language, pinned skills and banner direction for international executive search visibility (DACH · CEE · EMEA), keeping employment chronology intact and holding advisory/Board ambition in narrative rather than inventing a role.",
+    outcome:
+      "Deliverables: LinkedIn positioning package (headline, About, experience refinements, skills architecture and implementation notes). No new role or board seat is claimed as a result.",
+  },
+  {
+    id: "energy-board-adviser",
+    slug: "energy-board-strategic-adviser",
+    profile: "Board & Strategic Adviser · Energy Executive · Professional Engineer",
+    challenge:
+      "Technical and COO-level energy leadership needed a Board Profile that translated asset, capital and operational scale into governance-relevant value for boards and executive teams.",
+    assessment:
+      "Operating evidence was substantial; the reading required board-relevant value highlights, skills for oversight and a calm Board Profile rather than a dense technical CV alone.",
+    approach:
+      "Structured a Board & Strategic Adviser profile: board profile narrative, value highlights, skills architecture, professional experience and board/community service — oriented to capital allocation, risk oversight and stakeholder alignment.",
+    outcome:
+      "Deliverables: Board profile and strategic-adviser positioning materials. No board appointment is claimed by this engagement summary.",
+  },
+];
 
 /** When true and case studies exist, the section/page publishes entries. */
-export const publishCaseStudies = false;
+export const publishCaseStudies = true;
 
 export const caseStudyTemplate: CaseStudy = {
   id: "template",

@@ -13,6 +13,7 @@ import {
   publishTestimonials,
   testimonials,
   trustIndicators,
+  workMethod,
 } from "../engagement";
 
 export function ApproachPillars({ compact = false }: { compact?: boolean }) {
@@ -123,6 +124,33 @@ export function ConfidentialitySection() {
   );
 }
 
+export function WorkMethodSection() {
+  return (
+    <section className="section" id="work-method">
+      <div className="container">
+        <SectionHead
+          kicker={workMethod.kicker}
+          title={workMethod.title}
+          deck={workMethod.deck}
+        />
+        <div className="trust-grid">
+          {workMethod.pillars.map((item) => (
+            <article key={item.title}>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          ))}
+        </div>
+        <p className="quiet-note">
+          Client documents remain confidential. Public summaries describe positioning method and
+          deliverable type — never private contact details, and never invented interviews, offers or
+          appointments.
+        </p>
+      </div>
+    </section>
+  );
+}
+
 export function TestimonialsSection() {
   const quotesReady = publishTestimonials && testimonials.length > 0;
   const refsReady = publishClientReferences && clientReferences.length > 0;
@@ -151,8 +179,8 @@ export function TestimonialsSection() {
           <div>
             <SectionHead
               kicker="Client references"
-              title="Professionals who have engaged the practice."
-              deck="Names appear with permission as references. Engagement details and quotes are published only when supplied and approved — never invented."
+              title="Professionals who have engaged VisionSpark Advisors."
+              deck="Names and engagement types appear with permission. Full documents, personal contact details and invented testimonials are never published."
             />
             <ul className="reference-list">
               {clientReferences.map((item) => (
@@ -192,12 +220,7 @@ export function TestimonialsSection() {
               ))}
             </div>
           </div>
-        ) : (
-          <p className="deck">
-            Written testimonials and detailed engagement outcomes can be added here when you supply
-            them.
-          </p>
-        )}
+        ) : null}
       </div>
     </section>
   );

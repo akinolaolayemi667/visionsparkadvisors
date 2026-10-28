@@ -13,6 +13,7 @@ import {
   PackagesSection,
   TestimonialsSection,
   TrustSection,
+  WorkMethodSection,
 } from "../components/TrustSections";
 import { cta, practice } from "../config";
 import { audienceCards, authorityFlow, services } from "../services";
@@ -173,8 +174,9 @@ export function Home() {
       <BeforeAfterPositioning />
       <TrustSection />
       <ConfidentialitySection />
+      <WorkMethodSection />
       <TestimonialsSection />
-      <CaseStudiesSection showTemplate />
+      <CaseStudiesSection />
 
       <section className="section">
         <div className="container resource-band">

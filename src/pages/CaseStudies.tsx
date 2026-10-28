@@ -13,10 +13,11 @@ export function CaseStudies() {
   const ready = publishCaseStudies && caseStudies.length > 0;
 
   usePageMeta(
-    "Case Studies — Fakorede Joel",
+    "Case Studies — VisionSpark Advisors",
     ready
-      ? "Verified positioning case studies from Fakorede Joel’s practice."
+      ? "Selected VisionSpark Advisors engagements: Board biographies, executive CVs and LinkedIn positioning — deliverables described without inventing appointments."
       : "Case studies will publish when genuine client profiles, challenges and outcomes have been supplied.",
+    { path: "/case-studies" },
   );
 
   return (
@@ -26,7 +27,7 @@ export function CaseStudies() {
         title={ready ? "How positioning changed the reading." : "Verified studies — coming when ready."}
         lede={
           ready
-            ? "Each study is drawn from a genuine engagement. Outcomes appear only when they have been supplied."
+            ? "Each study reflects real positioning work. Outcomes name deliverables produced — not invented interviews, offers or board appointments."
             : "This page is structured for future case studies. No interviews, job offers, salaries or placement results are fabricated."
         }
       />
