@@ -17,6 +17,7 @@ export const practice = {
   supporting:
     "Executive Career Strategy · Independent Recruitment · Resume/CV Positioning · LinkedIn Strategy · Executive Job Search",
   trustMarks: ["Confidential", "Professional", "Evidence-Led", "Candidate-Centered"],
+  siteUrl: "https://visionsparkadvisors.vercel.app",
   /** Relative to /public. Leave empty until a portrait file is added. */
   portrait: "/portrait.jpg",
   portraitAvailable: false,
