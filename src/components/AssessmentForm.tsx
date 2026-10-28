@@ -1,6 +1,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { practice } from "../config";
+import { fileToBase64, openMailto, submitIntake } from "../lib/intake";
 
 const steps = [
   "Professional information",
@@ -73,11 +74,16 @@ export function AssessmentForm() {
   const [challengeOther, setChallengeOther] = useState("");
   const [fileName, setFileName] = useState("");
   const [fileNote, setFileNote] = useState("");
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
   const [engagement, setEngagement] = useState("");
   const [ack, setAck] = useState(false);
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [ready, setReady] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [fallback, setFallback] = useState(false);
+  const [statusNote, setStatusNote] = useState("");
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
 
@@ -200,18 +206,60 @@ export function AssessmentForm() {
     setStep((value) => Math.max(value - 1, 0));
   }
 
-  function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent) {
     event.preventDefault();
     if (hp) {
-      setReady(true);
+      setSent(true);
       return;
     }
     const next = validateStep(4);
     setErrors(next);
     if (Object.keys(next).length) return;
-    setReady(true);
+
+    setSending(true);
+    setStatusNote("");
     setCopied(false);
     setCopyFailed(false);
+
+    let attachment = null;
+    if (resumeFile) {
+      try {
+        attachment = await fileToBase64(resumeFile);
+      } catch {
+        setSending(false);
+        setStatusNote("Could not read the résumé/CV file. Try a smaller PDF or DOC.");
+        return;
+      }
+    }
+
+    const result = await submitIntake({
+      type: "career-assessment",
+      subject: `Career assessment — ${cleanLine(fullName)}`,
+      name: fullName,
+      replyTo: email.trim(),
+      message: letter,
+      honeypot: hp,
+      attachment,
+      fields: {
+        TargetRole: targetRole,
+        Engagement: engagement,
+        Region: region,
+      },
+    });
+
+    setSending(false);
+
+    if (result.ok) {
+      setSent(true);
+      setFallback(false);
+      setReady(true);
+      return;
+    }
+
+    setFallback(true);
+    setSent(true);
+    setReady(true);
+    setStatusNote(result.error);
   }
 
   async function copyLetter() {
@@ -226,49 +274,49 @@ export function AssessmentForm() {
 
   function sendEmail() {
     if (!practice.email) return;
-    const subject = encodeURIComponent(`Career assessment — ${cleanLine(fullName)}`);
-    const body = encodeURIComponent(
-      `${letter}\n\n(If your résumé/CV was not embedded, please attach: ${fileName || "your current résumé/CV"})`,
-    );
-    const href = `mailto:${practice.email}?subject=${subject}&body=${body}`;
-    if (href.length > 1900) {
+    const body = `${letter}\n\n(If your résumé/CV was not embedded, please attach: ${fileName || "your current résumé/CV"})`;
+    if (!openMailto(practice.email, `Career assessment — ${cleanLine(fullName)}`, body)) {
       void copyLetter();
-      return;
     }
-    window.location.href = href;
   }
 
-  if (ready) {
+  if (ready && sent) {
     return (
       <div className="form-success">
-        <h2>Your assessment request is ready to send.</h2>
+        <h2>
+          {fallback
+            ? "Almost there — send the request to complete."
+            : "Your assessment request has been sent."}
+        </h2>
         <p className="deck">
-          Attach your résumé/CV when you send the message
-          {fileName ? ` (${fileName})` : ""}. The request is read personally and treated as
-          confidential.
-          {!practice.email
-            ? " Copy the note and send it through your direct channel to Fakorede Joel."
-            : null}
+          {fallback
+            ? `Direct delivery is temporarily unavailable. Copy the request or open email${fileName ? ` and attach ${fileName}` : ""}. The request is read personally and treated as confidential.`
+            : "It will be read personally and treated as confidential. Scope and fees for any advisory work are agreed before engagement begins."}
         </p>
-        <div className="letter">{letter}</div>
+        {statusNote ? <p className="field-error">{statusNote}</p> : null}
+        {fallback ? <div className="letter">{letter}</div> : null}
         <div className="form-actions">
-          {practice.email ? (
+          {fallback && practice.email ? (
             <button className="btn" type="button" onClick={sendEmail}>
               Open email
             </button>
           ) : null}
-          <button className="btn btn--ghost" type="button" onClick={copyLetter}>
-            {copied ? "Copied" : "Copy request"}
-          </button>
+          {fallback ? (
+            <button className="btn btn--ghost" type="button" onClick={copyLetter}>
+              {copied ? "Copied" : "Copy request"}
+            </button>
+          ) : null}
           <button
             className="btn btn--ghost"
             type="button"
             onClick={() => {
               setReady(false);
+              setSent(false);
+              setFallback(false);
               setStep(4);
             }}
           >
-            Edit
+            {fallback ? "Edit" : "Done"}
           </button>
         </div>
         {copyFailed ? (
@@ -526,8 +574,10 @@ export function AssessmentForm() {
                 if (!file) {
                   setFileName("");
                   setFileNote("");
+                  setResumeFile(null);
                   return;
                 }
+                setResumeFile(file);
                 setFileName(file.name);
                 setFileNote(`${Math.round(file.size / 1024)} KB · ${file.type || "document"}`);
               }}
@@ -535,7 +585,10 @@ export function AssessmentForm() {
             {fileName ? (
               <p className="field-hint">
                 Selected: {fileName}
-                {fileNote ? ` (${fileNote})` : ""}. Attach this file when you send the request.
+                {fileNote ? ` (${fileNote})` : ""}.
+                {resumeFile
+                  ? " This file will be included with your request when possible."
+                  : " Attach this file if you send by email."}
               </p>
             ) : null}
             {errors.file ? <p className="field-error">{errors.file}</p> : null}
@@ -544,6 +597,7 @@ export function AssessmentForm() {
             className="btn btn--ghost"
             type="button"
             onClick={() => {
+              setResumeFile(null);
               setFileName("Will attach when sending");
               setFileNote("No file selected in browser — candidate will attach manually.");
               setErrors((current) => {
@@ -605,11 +659,16 @@ export function AssessmentForm() {
             Continue
           </button>
         ) : (
-          <button className="btn" type="submit">
-            Request My Assessment
+          <button className="btn" type="submit" disabled={sending}>
+            {sending ? "Sending…" : "Request My Assessment"}
           </button>
         )}
       </div>
+      {statusNote && !sent ? (
+        <p className="field-error" role="alert">
+          {statusNote}
+        </p>
+      ) : null}
     </form>
   );
 }

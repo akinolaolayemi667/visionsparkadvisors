@@ -1,6 +1,7 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { practice } from "../config";
+import { openMailto, submitIntake } from "../lib/intake";
 
 const contexts = [
   "Chief executive / C-suite",
@@ -73,7 +74,9 @@ export function EnquiryForm() {
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [summary, setSummary] = useState("");
-  const [ready, setReady] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [fallback, setFallback] = useState(false);
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
 
@@ -86,6 +89,7 @@ export function EnquiryForm() {
   const letter = useMemo(() => {
     return [
       "Confidential enquiry",
+      practice.brand,
       practice.name,
       "",
       `Nature: ${nature || "—"}`,
@@ -115,23 +119,49 @@ export function EnquiryForm() {
     return next;
   }
 
-  function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent) {
     event.preventDefault();
     if (hp) {
-      setReady(true);
+      setSent(true);
       return;
     }
     const next = validate();
     setErrors(next);
     if (Object.keys(next).length) {
       setSummary("Please complete the highlighted fields.");
-      setReady(false);
       return;
     }
+
     setSummary("");
-    setReady(true);
+    setSending(true);
     setCopied(false);
     setCopyFailed(false);
+
+    const result = await submitIntake({
+      type: "enquiry",
+      subject: `Confidential enquiry — ${cleanLine(nature)}`,
+      name: name.trim(),
+      replyTo: email.trim(),
+      message: letter,
+      honeypot: hp,
+      fields: {
+        Nature: nature,
+        Organization: organization,
+        Context: context,
+      },
+    });
+
+    setSending(false);
+
+    if (result.ok) {
+      setSent(true);
+      setFallback(false);
+      return;
+    }
+
+    setFallback(true);
+    setSent(true);
+    setSummary(result.error);
   }
 
   async function copyLetter() {
@@ -146,39 +176,42 @@ export function EnquiryForm() {
 
   function sendEmail() {
     if (!practice.email) return;
-    const subject = encodeURIComponent(`Confidential enquiry — ${cleanLine(nature)}`);
-    const body = encodeURIComponent(letter);
-    const href = `mailto:${practice.email}?subject=${subject}&body=${body}`;
-    if (href.length > 1900) {
+    if (!openMailto(practice.email, `Confidential enquiry — ${cleanLine(nature)}`, letter)) {
       void copyLetter();
-      return;
     }
-    window.location.href = href;
   }
 
-  if (ready) {
+  if (sent) {
     return (
       <div className="form-success">
-        <h2>Your note is ready to send.</h2>
+        <h2>{fallback ? "Almost there — send the note to complete." : "Your enquiry has been sent."}</h2>
         <p className="deck">
-          It will be read personally and treated as confidential. Sending it is the step that
-          places the enquiry.
-          {practice.email
-            ? " Open your email, or copy the note if the mail draft does not appear."
-            : " Copy the note and send it through your direct channel to Fakorede Joel."}
+          {fallback
+            ? "Direct delivery is temporarily unavailable. Copy the note or open email to place the enquiry. It will be read personally and treated as confidential."
+            : "It will be read personally and treated as confidential. If you do not hear back within a few business days, follow up on the same email address you provided."}
         </p>
-        <div className="letter">{letter}</div>
+        {fallback ? <div className="letter">{letter}</div> : null}
         <div className="form-actions">
-          {practice.email ? (
+          {fallback && practice.email ? (
             <button className="btn" type="button" onClick={sendEmail}>
               Open email
             </button>
           ) : null}
-          <button className="btn btn--ghost" type="button" onClick={copyLetter}>
-            {copied ? "Copied" : "Copy note"}
-          </button>
-          <button className="btn btn--ghost" type="button" onClick={() => setReady(false)}>
-            Edit
+          {fallback ? (
+            <button className="btn btn--ghost" type="button" onClick={copyLetter}>
+              {copied ? "Copied" : "Copy note"}
+            </button>
+          ) : null}
+          <button
+            className="btn btn--ghost"
+            type="button"
+            onClick={() => {
+              setSent(false);
+              setFallback(false);
+              setSummary("");
+            }}
+          >
+            {fallback ? "Edit" : "Send another"}
           </button>
         </div>
         {copyFailed ? (
@@ -314,8 +347,8 @@ export function EnquiryForm() {
         {errors.ack ? <p className="field-error">{errors.ack}</p> : null}
       </div>
       <div className="form-actions">
-        <button className="btn" type="submit">
-          Compose enquiry
+        <button className="btn" type="submit" disabled={sending}>
+          {sending ? "Sending…" : "Send enquiry"}
         </button>
         <p className="form-note">
           Read the <Link to="/privacy">privacy note</Link> and the{" "}

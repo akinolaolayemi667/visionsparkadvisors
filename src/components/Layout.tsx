@@ -225,20 +225,16 @@ export function Layout() {
             <div>
               <p className="footer__label">Professional profiles</p>
               <ul className="footer__socials">
-                {socials.map((item) => (
-                  <li key={item.id} className={item.dominant ? "is-dominant" : undefined}>
-                    {item.href ? (
+                {socials
+                  .filter((item) => Boolean(item.href))
+                  .map((item) => (
+                    <li key={item.id} className={item.dominant ? "is-dominant" : undefined}>
                       <a href={item.href} rel="noopener noreferrer" target="_blank">
                         {item.label}
                         {item.dominant ? " (primary)" : ""}
                       </a>
-                    ) : (
-                      <span className="footer__placeholder" title="URL to be supplied">
-                        {item.label}: {item.placeholder}
-                      </span>
-                    )}
-                  </li>
-                ))}
+                    </li>
+                  ))}
               </ul>
             </div>
           </div>

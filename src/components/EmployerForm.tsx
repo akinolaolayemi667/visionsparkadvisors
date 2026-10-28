@@ -1,6 +1,7 @@
 import { FormEvent, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { practice } from "../config";
+import { openMailto, submitIntake } from "../lib/intake";
 
 const arrangements = ["On-site", "Hybrid", "Remote", "Flexible / to be discussed"];
 const seniorities = [
@@ -61,6 +62,10 @@ export function EmployerForm() {
   const [errors, setErrors] = useState<Errors>({});
   const [summary, setSummary] = useState("");
   const [ready, setReady] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [sent, setSent] = useState(false);
+  const [fallback, setFallback] = useState(false);
+  const [statusNote, setStatusNote] = useState("");
   const [copied, setCopied] = useState(false);
   const [copyFailed, setCopyFailed] = useState(false);
 
@@ -121,9 +126,10 @@ export function EmployerForm() {
     return next;
   }
 
-  function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent) {
     event.preventDefault();
     if (hp) {
+      setSent(true);
       setReady(true);
       return;
     }
@@ -135,9 +141,40 @@ export function EmployerForm() {
       return;
     }
     setSummary("");
-    setReady(true);
+    setSending(true);
+    setStatusNote("");
     setCopied(false);
     setCopyFailed(false);
+
+    const result = await submitIntake({
+      type: "hiring-requirement",
+      subject: `Hiring requirement — ${cleanLine(roleTitle || company)}`,
+      name: name.trim(),
+      replyTo: email.trim(),
+      message: letter,
+      honeypot: hp,
+      fields: {
+        Company: company.trim(),
+        Position: position.trim(),
+        RoleTitle: roleTitle.trim(),
+        Location: location.trim(),
+        Timeline: timeline,
+      },
+    });
+
+    setSending(false);
+
+    if (result.ok) {
+      setSent(true);
+      setFallback(false);
+      setReady(true);
+      return;
+    }
+
+    setFallback(true);
+    setSent(true);
+    setReady(true);
+    setStatusNote(result.error);
   }
 
   async function copyLetter() {
@@ -152,40 +189,53 @@ export function EmployerForm() {
 
   function sendEmail() {
     if (!practice.email) return;
-    const subject = encodeURIComponent(
-      `Hiring requirement — ${cleanLine(roleTitle || company)}`,
-    );
-    const body = encodeURIComponent(letter);
-    const href = `mailto:${practice.email}?subject=${subject}&body=${body}`;
-    if (href.length > 1900) {
+    if (
+      !openMailto(
+        practice.email,
+        `Hiring requirement — ${cleanLine(roleTitle || company)}`,
+        letter,
+      )
+    ) {
       void copyLetter();
-      return;
     }
-    window.location.href = href;
   }
 
-  if (ready) {
+  if (ready && sent) {
     return (
       <div className="form-success">
-        <h2>Your hiring note is ready to send.</h2>
+        <h2>
+          {fallback
+            ? "Almost there — send the note to complete."
+            : "Your hiring note has been sent."}
+        </h2>
         <p className="deck">
-          It will be read personally and treated as confidential.
-          {practice.email
-            ? " Open your email, or copy the note if the mail draft does not appear."
-            : " Copy the note and send it through your direct channel to Fakorede Joel."}
+          {fallback
+            ? "Direct delivery is temporarily unavailable. Copy the note or open email. It will be read personally and treated as confidential."
+            : "It will be read personally and treated as confidential. Recruitment consideration remains separate from candidate-paid career advisory."}
         </p>
-        <div className="letter">{letter}</div>
+        {statusNote ? <p className="field-error">{statusNote}</p> : null}
+        {fallback ? <div className="letter">{letter}</div> : null}
         <div className="form-actions">
-          {practice.email ? (
+          {fallback && practice.email ? (
             <button className="btn" type="button" onClick={sendEmail}>
               Open email
             </button>
           ) : null}
-          <button className="btn btn--ghost" type="button" onClick={copyLetter}>
-            {copied ? "Copied" : "Copy note"}
-          </button>
-          <button className="btn btn--ghost" type="button" onClick={() => setReady(false)}>
-            Edit
+          {fallback ? (
+            <button className="btn btn--ghost" type="button" onClick={copyLetter}>
+              {copied ? "Copied" : "Copy note"}
+            </button>
+          ) : null}
+          <button
+            className="btn btn--ghost"
+            type="button"
+            onClick={() => {
+              setReady(false);
+              setSent(false);
+              setFallback(false);
+            }}
+          >
+            {fallback ? "Edit" : "Done"}
           </button>
         </div>
         {copyFailed ? (
@@ -383,8 +433,8 @@ export function EmployerForm() {
         {errors.ack ? <p className="field-error">{errors.ack}</p> : null}
       </div>
       <div className="form-actions">
-        <button className="btn" type="submit">
-          Compose hiring enquiry
+        <button className="btn" type="submit" disabled={sending}>
+          {sending ? "Sending…" : "Send hiring enquiry"}
         </button>
         <p className="form-note">
           Read the <Link to="/privacy">privacy note</Link> and the{" "}

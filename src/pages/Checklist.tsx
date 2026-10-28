@@ -4,6 +4,7 @@ import { PageHeader } from "../components/Blocks";
 import { checklistMeta, checklistQuestions } from "../content/checklist";
 import { practice } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
+import { submitIntake } from "../lib/intake";
 
 const levels = [
   "C-suite / Chief executive",
@@ -32,6 +33,7 @@ export function Checklist() {
   const [hp, setHp] = useState("");
   const [errors, setErrors] = useState<Errors>({});
   const [notice, setNotice] = useState("");
+  const [sending, setSending] = useState(false);
 
   usePageMeta(
     `${checklistMeta.title} — Fakorede Joel`,
@@ -54,7 +56,7 @@ export function Checklist() {
     [firstName, lastName, email, level, targetRole],
   );
 
-  function onSubmit(event: FormEvent) {
+  async function onSubmit(event: FormEvent) {
     event.preventDefault();
     if (hp) {
       setUnlocked(true);
@@ -70,20 +72,29 @@ export function Checklist() {
     setErrors(next);
     if (Object.keys(next).length) return;
 
+    setSending(true);
+    const fullName = `${firstName.trim()} ${lastName.trim()}`.trim();
+    const result = await submitIntake({
+      type: "checklist-unlock",
+      subject: "Executive Positioning Checklist request",
+      name: fullName,
+      replyTo: email.trim(),
+      message: requestNote,
+      honeypot: hp,
+      fields: {
+        Level: level,
+        TargetRole: targetRole.trim(),
+      },
+    });
+    setSending(false);
+
     sessionStorage.setItem("vsa-checklist", "1");
     setUnlocked(true);
     setNotice(
-      "Your checklist is below. A copy of your request details stays on this device unless you choose to send it.",
+      result.ok
+        ? "Your checklist is below. Your request details have been noted for a single professional follow-up."
+        : "Your checklist is below. Delivery to the practice was unavailable just now; you can still use the checklist and request an assessment if you wish.",
     );
-
-    if (practice.email) {
-      const subject = encodeURIComponent("Executive Positioning Checklist request");
-      const body = encodeURIComponent(requestNote);
-      const href = `mailto:${practice.email}?subject=${subject}&body=${body}`;
-      if (href.length <= 1900) {
-        // Optional notify — user can dismiss mail client
-      }
-    }
   }
 
   return (
@@ -186,8 +197,8 @@ export function Checklist() {
               </label>
               {errors.consent ? <p className="field-error">{errors.consent}</p> : null}
               <div className="form-actions">
-                <button className="btn" type="submit">
-                  View the checklist
+                <button className="btn" type="submit" disabled={sending}>
+                  {sending ? "Unlocking…" : "View the checklist"}
                 </button>
               </div>
             </form>
