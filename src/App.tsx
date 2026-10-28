@@ -2,6 +2,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
+import { ExecutiveBoard } from "./pages/ExecutiveBoard";
 import { Faq } from "./pages/Faq";
 import { Home } from "./pages/Home";
 import { HowItWorks } from "./pages/HowItWorks";
@@ -12,7 +13,6 @@ import { Principles } from "./pages/Principles";
 import { Privacy } from "./pages/Privacy";
 import { Recruitment } from "./pages/Recruitment";
 import {
-  ExecutiveBoardPage,
   JobSearchPage,
   LinkedInPage,
   PositioningPage,
@@ -29,7 +29,7 @@ export default function App() {
         <Route path="resume-cv" element={<ResumePage />} />
         <Route path="linkedin" element={<LinkedInPage />} />
         <Route path="job-search-strategy" element={<JobSearchPage />} />
-        <Route path="executive-board" element={<ExecutiveBoardPage />} />
+        <Route path="executive-board" element={<ExecutiveBoard />} />
         <Route path="recruitment" element={<Recruitment />} />
         <Route path="how-it-works" element={<HowItWorks />} />
         <Route path="insights" element={<Insights />} />

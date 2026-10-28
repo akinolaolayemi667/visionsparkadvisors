@@ -1,7 +1,15 @@
 import { Link } from "react-router-dom";
-import { CtaBand, PageHeader } from "../components/Blocks";
+import { CtaBand } from "../components/Blocks";
 import { cta, practice } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
+
+const groundings = [
+  "Clarity",
+  "Evidence",
+  "Relevance",
+  "Integrity",
+  "Confidentiality",
+];
 
 const expectations = [
   {
@@ -20,66 +28,100 @@ const expectations = [
     title: "A clear no",
     text: "I decline work that would require invented evidence, and searches I am not equipped to conduct properly.",
   },
-  {
-    title: "Scope before work",
-    text: "Advisory fees and deliverables are agreed before the work begins. Recruitment is not sold as a package with them.",
-  },
 ];
 
 export function About() {
   usePageMeta(
     "About Fakorede Joel — Executive Career Strategist",
-    "Fakorede Joel is an executive career strategist and independent recruiter. He positions leadership for competitive markets and recruits separately for genuine opportunities.",
+    "Where talent, positioning and opportunity meet. Fakorede Joel works at the intersection of recruitment, career strategy and professional positioning.",
   );
 
   return (
     <>
-      <PageHeader
-        kicker="Independent practice"
-        title={practice.name}
-        lede="I help executives, senior leaders, and professionals strengthen how their experience, leadership value, achievements, and career potential are positioned in competitive employment markets."
-      />
-      <section className="page-section">
-        <div className="container stack">
-          <div>
-            <p className="role" style={{ marginBottom: 8 }}>
-              Primary positioning
+      <header className="page-header">
+        <div className="container about-hero">
+          <div className="about-hero__copy">
+            <p className="kicker">Independent practice</p>
+            <h1>Where Talent, Positioning and Opportunity Meet</h1>
+            <p className="lede">
+              I work at the intersection of recruitment, career strategy and professional
+              positioning.
             </p>
-            <p className="lede" style={{ color: "var(--ink)" }}>
+            <p className="role" style={{ marginTop: 28 }}>
               {practice.role}
             </p>
-            <p className="kicker" style={{ marginTop: 36 }}>
-              Extended positioning
+          </div>
+          <div className="about-hero__media" aria-hidden={!practice.portraitAvailable}>
+            {practice.portraitAvailable ? (
+              <img
+                src={practice.portrait}
+                alt={`Professional portrait of ${practice.name}`}
+                width={720}
+                height={900}
+              />
+            ) : (
+              <div className="hero__placeholder about-placeholder">
+                <span className="hero__placeholder-mark" />
+                <p>
+                  {practice.name}
+                  <span>Professional portrait</span>
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      </header>
+
+      <section className="page-section">
+        <div className="container stack">
+          <div className="prose prose--wide">
+            <p>
+              Through conversations with professionals at different stages of their careers, I
+              repeatedly see the same challenge: highly capable people often have considerably more
+              value than their professional materials communicate.
             </p>
+            <p>
+              A strong career history does not automatically create a strong market narrative.
+              Enterprise leadership, P&L accountability, transformation, governance or stakeholder
+              influence may be present in the work — and still remain difficult for a hiring
+              leader, recruiter or Board to identify on the page.
+            </p>
+            <p className="pull">
+              That is why my work extends beyond identifying opportunities.
+            </p>
+            <p>
+              I help professionals understand how their experience is being communicated, identify
+              gaps between their capabilities and market presentation, and develop stronger
+              positioning around the opportunities they want to pursue.
+            </p>
+            <p>
+              My work can include independent recruitment, résumé/CV strategy, LinkedIn
+              positioning, executive career strategy and job-search advisory. Whether I am assessing
+              talent for an opportunity or helping a professional strengthen their career
+              positioning, my approach is grounded in clarity, evidence, relevance, integrity and
+              confidentiality.
+            </p>
+            <p>
+              This is an independent practice. I do not present it as a multinational search firm.
+              A fuller professional history is shared directly when a conversation or mandate calls
+              for it — in confidence, without invented credentials, awards, placements or
+              testimonials.
+            </p>
+          </div>
+
+          <p className="trust-marks trust-marks--emphasis" aria-label="Working principles">
+            {groundings.map((item) => (
+              <span key={item}>{item}</span>
+            ))}
+          </p>
+
+          <div>
+            <p className="kicker">Extended positioning</p>
             <ul className="role-list">
               {practice.extendedRole.map((item) => (
                 <li key={item}>{item}</li>
               ))}
             </ul>
-          </div>
-
-          <div className="prose prose--wide">
-            <p className="pull" style={{ marginTop: 0 }}>
-              {practice.statement}
-            </p>
-            <p>
-              The practice sits where executive search, executive career strategy, and leadership
-              positioning meet. I recruit independently for genuine opportunities. Separately,
-              individuals engage me to position a career: the narrative, the résumé or CV, LinkedIn,
-              the search, the interview, and the judgment around an opportunity.
-            </p>
-            <p>
-              I work from both sides of the hiring equation. Candidates need their leadership value
-              to be recognizable. Recruiters, hiring leaders, search professionals, and boards need
-              that value in a form they can assess. A narrative that satisfies only one of those
-              readings does not hold.
-            </p>
-            <p>
-              A fuller professional history is shared directly, when it is relevant to a
-              conversation or a mandate. It is shared in confidence. The public face of this
-              practice is the work and the standard, not a constructed corporate identity and not a
-              list of borrowed claims.
-            </p>
           </div>
 
           <div>
@@ -96,35 +138,26 @@ export function About() {
 
           <div className="prose">
             <p>
-              The sequence I align is experience, leadership value, career narrative, résumé or CV,
-              LinkedIn, target opportunities, search strategy, interview positioning, and market
-              communication.
-            </p>
-            <p>
-              A visitor who searches my name after receiving outreach should leave this page clear
-              on who I am, what I do, who I work with, how confidentiality is handled, and how
-              recruitment differs from paid career advisory.
-            </p>
-            <p>
               <Link className="text-link" to="/how-it-works">
                 How it works
               </Link>
               {" · "}
-              <Link className="text-link" to="/faq">
-                FAQ
+              <Link className="text-link" to="/executive-board">
+                Executive & Board
+              </Link>
+              {" · "}
+              <Link className="text-link" to="/recruitment">
+                Recruitment
               </Link>
               {" · "}
               <Link className="text-link" to="/principles">
                 Principles
               </Link>
-              {" · "}
-              <Link className="text-link" to="/insights">
-                Insights
-              </Link>
             </p>
           </div>
         </div>
       </section>
+
       <CtaBand
         title="If the fit is real, the next step is a direct conversation."
         text="Request a career assessment, or discuss a talent requirement if you are hiring."

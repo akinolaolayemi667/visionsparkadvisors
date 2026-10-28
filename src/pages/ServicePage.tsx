@@ -109,6 +109,3 @@ export function LinkedInPage() {
 export function JobSearchPage() {
   return <ServicePage service={services.find((s) => s.id === "job-search")!} />;
 }
-export function ExecutiveBoardPage() {
-  return <ServicePage service={services.find((s) => s.id === "executive-board")!} />;
-}

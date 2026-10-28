@@ -40,7 +40,7 @@ const copy: Record<string, { title: string; text: string }> = {
   },
   talent: {
     title: "Discuss a talent requirement.",
-    text: "If you are hiring, describe the role, the organization, and the context a recruiter would need. This is a conversation about a genuine mandate. It is separate from any advisory service.",
+    text: "If you are hiring, describe the role, the organization, and the context a recruiter would need. For a full employer enquiry form, use the Recruitment page. This route remains separate from any advisory service.",
   },
   candidacy: {
     title: "Submit a résumé/CV for consideration.",
@@ -98,6 +98,13 @@ export function Contact() {
             </p>
             <p>If I am not the right person, I will say so.</p>
             <p>
+              {active === "talent" || active === "search" ? (
+                <>
+                  Prefer the structured employer form?{" "}
+                  <Link to="/recruitment#hiring-enquiry">Discuss Your Hiring Requirement</Link>
+                  {" · "}
+                </>
+              ) : null}
               <Link to="/faq">Read the FAQ</Link>
               {" · "}
               <Link to="/principles">Principles</Link>

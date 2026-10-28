@@ -86,14 +86,15 @@ export function Home() {
           />
           <div className="prose prose--wide authority-copy">
             <p>
-              A professional may have led teams, managed significant budgets, transformed
-              operations, delivered revenue growth, entered new markets, advised Boards or managed
-              complex stakeholder environments — yet none of that matters if the value is difficult
-              for the reader to identify.
+              A professional may have held P&L leadership, delivered revenue growth, led operational
+              excellence or business transformation, expanded into new markets, advised Boards, or
+              managed complex stakeholder environments — yet none of that matters if enterprise
+              value and strategic judgment are difficult for the reader to identify.
             </p>
             <p>
               My work helps connect what you have accomplished with what the market needs to
-              understand about you.
+              understand about you: commercial impact, governance exposure, change leadership and
+              the evidence of organizational leadership that decision-makers actually assess.
             </p>
           </div>
           <ol className="flow" aria-label="Positioning sequence">

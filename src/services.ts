@@ -109,7 +109,7 @@ export const services: Service[] = [
     title: "Executive & Board Positioning",
     summary:
       "Narratives for the most scrutinized roles — C-Suite mandates and Board or portfolio careers — written in the evidence those readers use.",
-    body: "An operating narrative and a Board narrative can belong to the same person and still require different proof. This engagement concentrates enterprise accountability, governance, judgment and committee contribution. Materials stay short, calm and precise. No Board or executive appointment is guaranteed by clearer positioning.",
+    body: "An operating narrative and a Board narrative can belong to the same person and still require different proof. This engagement concentrates enterprise leadership, governance, strategic judgment, P&L accountability and committee contribution. Materials stay short, calm and precise. No Board or executive appointment is guaranteed by clearer positioning.",
     includes: [
       "C-Suite positioning",
       "Board narrative",
@@ -134,19 +134,20 @@ export const services: Service[] = [
     kicker: "Service 06",
     title: "Independent Recruitment",
     summary:
-      "I work with organizations and decision-makers to identify, assess and engage professionals aligned with business and leadership requirements.",
-    body: "Recruitment is a separate practice from candidate-paid career advisory. Consideration rests on fit to a genuine opportunity. Purchasing résumé, LinkedIn or positioning services is never a condition of being considered — and buying advice does not create consideration.",
+      "Talent aligned with business direction — beyond matching titles and keywords.",
+    body: "I work with organizations and decision-makers to identify, assess and engage professionals aligned with business and leadership requirements. Recruitment is a separate practice from candidate-paid career advisory. Consideration rests on fit to a genuine opportunity.",
     includes: [
-      "Executive recruitment",
-      "Leadership talent identification",
-      "Professional recruitment",
       "Candidate sourcing",
-      "Candidate engagement",
+      "Professional talent identification",
+      "Leadership search",
+      "Executive search support",
+      "Targeted candidate outreach",
       "Talent mapping",
       "Candidate assessment",
-      "Targeted search support",
+      "Candidate engagement",
+      "Market research",
     ],
-    cta: { href: "/contact?intent=talent", label: "Discuss a Talent Requirement" },
+    cta: { href: "/recruitment#hiring-enquiry", label: "Discuss Your Hiring Requirement" },
     employer: true,
   },
 ];
