@@ -158,8 +158,16 @@ export const engagementPath = [
   { id: "assessment", title: "Assessment", text: "Structured career or mandate conversation. No charge for requesting an assessment." },
   { id: "recommendation", title: "Recommendation", text: "A clear view of what would help — and what would not." },
   { id: "selection", title: "Service selection", text: "Agree the tier or instruments required." },
-  { id: "agreement", title: "Agreement", text: "Scope, deliverables, fees and advisory terms confirmed in writing." },
-  { id: "payment", title: "Payment", text: "Payment follows agreement. Architecture reserved for future integration — not active on this site yet." },
+  {
+    id: "agreement",
+    title: "Agreement",
+    text: "Scope, deliverables, fees and advisory terms confirmed in writing via the engagement confirmation flow.",
+  },
+  {
+    id: "payment",
+    title: "Payment",
+    text: "Payment follows written agreement only. Stripe Checkout can be enabled with Price IDs — never for requesting an assessment.",
+  },
   { id: "questionnaire", title: "Questionnaire", text: "Structured intake once an engagement is confirmed." },
   { id: "upload", title: "Document upload", text: "Secure materials exchange for the agreed work." },
   { id: "work", title: "Strategy / positioning work", text: "The advisory or recruitment activity as scoped." },

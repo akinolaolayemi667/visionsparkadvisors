@@ -1,12 +1,14 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { About } from "./pages/About";
+import { Agreement } from "./pages/Agreement";
 import { Assessment } from "./pages/Assessment";
 import { CaseStudies, CaseStudyArticle } from "./pages/CaseStudies";
 import { Checklist } from "./pages/Checklist";
 import { ClientPortal } from "./pages/ClientPortal";
 import { Contact } from "./pages/Contact";
 import { EngagementPath } from "./pages/EngagementPath";
+import { Payment } from "./pages/Payment";
 import { ExecutiveBoard } from "./pages/ExecutiveBoard";
 import { ExecutiveOpportunities } from "./pages/ExecutiveOpportunities";
 import { Faq } from "./pages/Faq";
@@ -50,6 +52,8 @@ export default function App() {
         <Route path="executive-positioning-checklist" element={<Checklist />} />
         <Route path="executive-opportunities" element={<ExecutiveOpportunities />} />
         <Route path="engagement-path" element={<EngagementPath />} />
+        <Route path="agreement" element={<Agreement />} />
+        <Route path="payment" element={<Payment />} />
         <Route path="client-portal" element={<ClientPortal />} />
         <Route path="case-studies" element={<CaseStudies />} />
         <Route path="case-studies/:slug" element={<CaseStudyArticle />} />

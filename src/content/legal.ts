@@ -147,7 +147,8 @@ export const careerAdvisoryTerms = {
       heading: "Payment terms",
       paragraphs: [
         "Fees are agreed before advisory work begins. Requesting an assessment does not create a charge.",
-        "[TO BE CONFIRMED — deposit, invoice timing, accepted payment methods, and any future online payment integration.]",
+        "When online checkout is enabled, payment is collected through Stripe Checkout only after a written engagement confirmation. Visitors cannot set their own price; only practice-configured Stripe Price IDs are used. Until those Price IDs are configured, payment instructions are provided privately with the written confirmation.",
+        "[TO BE CONFIRMED — deposit, invoice timing, refund interaction with Stripe, and any additional accepted payment methods.]",
       ],
     },
     {

@@ -14,6 +14,8 @@ export const sitemapPaths = [
   "/executive-positioning-checklist",
   "/executive-opportunities",
   "/engagement-path",
+  "/agreement",
+  "/payment",
   "/case-studies",
   "/case-studies/medtech-independent-board-director",
   "/case-studies/chair-board-director-strategic-advisor",

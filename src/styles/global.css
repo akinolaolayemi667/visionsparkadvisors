@@ -3210,6 +3210,51 @@ a.case-card:hover h3 {
   }
 }
 
+.agreement-layout {
+  display: grid;
+  gap: 40px;
+}
+
+@media (min-width: 960px) {
+  .agreement-layout {
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    align-items: start;
+  }
+}
+
+.agreement-draft {
+  border-top: 1px solid color-mix(in srgb, var(--navy) 18%, transparent);
+  padding-top: 20px;
+}
+
+.agreement-dl {
+  display: grid;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+.agreement-dl dt {
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--ink) 62%, transparent);
+}
+
+.agreement-dl dd {
+  margin: 4px 0 0;
+}
+
+.agreement-dl__block {
+  white-space: pre-wrap;
+}
+
+.agreement-signs {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+  font-size: 0.95rem;
+}
+
 @media print {
   .header,
   .footer,
@@ -3219,7 +3264,8 @@ a.case-card:hover h3 {
   .mobile-cta,
   .form-actions,
   .page-header,
-  .checklist-form {
+  .checklist-form,
+  .agreement-layout > .form {
     display: none !important;
   }
 
@@ -3229,7 +3275,12 @@ a.case-card:hover h3 {
   }
 
   .checklist-result,
-  .checklist-doc {
+  .checklist-doc,
+  .agreement-draft {
     display: block !important;
+  }
+
+  .agreement-layout {
+    display: block;
   }
 }

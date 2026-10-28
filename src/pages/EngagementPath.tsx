@@ -14,7 +14,7 @@ export function EngagementPath() {
       <PageHeader
         kicker="Onboarding architecture"
         title="From assessment to agreed work."
-        lede="The site is structured so payment and secure delivery can be integrated later. Requesting an assessment never creates an automatic charge."
+        lede="Assessment first. Written confirmation next. Payment only after fees and scope are agreed. Requesting an assessment never creates an automatic charge."
       />
       <section className="page-section">
         <div className="container stack">
@@ -25,6 +25,16 @@ export function EngagementPath() {
                 <div>
                   <h2>{step.title}</h2>
                   <p>{step.text}</p>
+                  {step.id === "agreement" ? (
+                    <p>
+                      <Link to="/agreement">Request written confirmation</Link>
+                    </p>
+                  ) : null}
+                  {step.id === "payment" ? (
+                    <p>
+                      <Link to="/payment">Open payment (after agreement)</Link>
+                    </p>
+                  ) : null}
                 </div>
               </li>
             ))}
@@ -34,8 +44,8 @@ export function EngagementPath() {
               Commercial terms, where advisory is involved, are confirmed in writing before payment.
               Read the{" "}
               <Link to="/career-advisory-terms">Career Advisory Terms</Link> template and the{" "}
-              <Link to="/packages">packages</Link> overview. Pricing appears only when you supply
-              approved figures — none are invented here.
+              <Link to="/packages">packages</Link> overview. Public package prices are never
+              invented — Stripe uses only Price IDs you configure after approving fees.
             </p>
             <p>
               A secure client portal is reserved for a later phase. See{" "}
@@ -46,7 +56,7 @@ export function EngagementPath() {
       </section>
       <CtaBand
         primary={cta.assessment}
-        secondary={cta.explorePositioning}
+        secondary={{ href: "/agreement", label: "Request written confirmation" }}
         title="Begin with understanding — not a transaction."
         text="A career assessment clarifies direction and fit. Payment belongs after agreement, not before the first conversation."
       />

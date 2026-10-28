@@ -44,6 +44,8 @@ export const footerMore = [
   { to: "/executive-positioning-checklist", label: "Positioning Checklist" },
   { to: "/executive-opportunities", label: "Outreach verification" },
   { to: "/engagement-path", label: "Engagement path" },
+  { to: "/agreement", label: "Agreement" },
+  { to: "/payment", label: "Payment" },
   { to: "/principles", label: "Principles" },
 ];
 
