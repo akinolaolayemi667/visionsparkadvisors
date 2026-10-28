@@ -194,11 +194,13 @@ main {
 }
 
 .brand__logo {
-  height: 44px;
+  height: 48px;
   width: auto;
-  max-width: min(168px, 42vw);
+  max-width: min(196px, 48vw);
   object-fit: contain;
+  object-position: left center;
   display: block;
+  background: transparent;
 }
 
 .brand__text {
@@ -227,13 +229,13 @@ main {
 
 .footer__logo {
   height: auto;
-  width: min(260px, 100%);
-  max-height: 88px;
+  width: min(240px, 100%);
+  max-height: 76px;
   object-fit: contain;
   object-position: left center;
   margin: 0 0 14px;
-  background: #fff;
-  padding: 10px 12px;
+  background: transparent;
+  padding: 0;
 }
 
 .footer__tagline {
@@ -2935,7 +2937,7 @@ a.case-card:hover h3 {
   position: relative;
   min-height: calc(100svh - var(--header) - var(--mobile-cta));
   display: grid;
-  align-items: end;
+  align-items: stretch;
   color: var(--cream);
   overflow: hidden;
   background: var(--dark);
@@ -2950,69 +2952,94 @@ a.case-card:hover h3 {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 18%;
+  /* Keep the portrait clear on the right; copy lives in the left panel */
+  object-position: 72% 16%;
 }
 
 .hero-bleed__shade {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(0, 12, 60, 0.9) 0%, rgba(0, 24, 72, 0.58) 48%, rgba(0, 24, 72, 0.28) 100%),
-    linear-gradient(0deg, rgba(0, 12, 60, 0.72) 0%, transparent 42%);
+    linear-gradient(
+      90deg,
+      rgba(0, 12, 48, 0.97) 0%,
+      rgba(0, 18, 58, 0.94) 34%,
+      rgba(0, 24, 72, 0.72) 52%,
+      rgba(0, 24, 72, 0.28) 68%,
+      rgba(0, 24, 72, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(0, 10, 40, 0.55) 0%, transparent 38%),
+    linear-gradient(180deg, rgba(0, 12, 48, 0.35) 0%, transparent 28%);
+}
+
+.hero-bleed__panel {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-self: start;
+  width: min(100%, 36.5rem);
+  max-width: 100%;
+  padding: 40px 0 48px;
 }
 
 .hero-bleed__content {
-  position: relative;
-  z-index: 1;
-  padding: 48px 0 56px;
-  max-width: 40rem;
+  width: 100%;
+  max-width: 32rem;
+  text-align: left;
 }
 
 .hero-bleed__logo {
-  width: min(240px, 70vw);
+  display: block;
+  width: min(280px, 78vw);
   height: auto;
-  margin-bottom: 22px;
-  background: rgba(255, 255, 255, 0.94);
-  padding: 10px 12px;
+  margin: 0 0 28px;
+  background: transparent;
+  padding: 0;
+  filter: drop-shadow(0 10px 28px rgba(0, 8, 32, 0.35));
+}
+
+.hero-bleed__brand {
+  margin: 0 0 22px;
+  font-family: var(--serif);
+  font-size: clamp(1.85rem, 4vw, 2.45rem);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: #fff;
 }
 
 .hero-bleed__title {
   font-family: var(--serif);
-  font-size: clamp(2.2rem, 5.5vw, 3.6rem);
-  line-height: 1.08;
+  font-size: clamp(1.85rem, 3.8vw, 2.85rem);
+  line-height: 1.12;
   font-weight: 500;
   margin: 0 0 16px;
-  max-width: 14em;
+  max-width: 16em;
+  color: #fff;
+  text-wrap: balance;
 }
 
 .hero-bleed__lede {
-  margin: 0 0 26px;
-  font-size: 1.08rem;
-  line-height: 1.5;
-  color: rgba(247, 246, 243, 0.86);
-  max-width: 34rem;
+  margin: 0 0 28px;
+  font-size: 1.05rem;
+  line-height: 1.55;
+  color: rgba(247, 246, 243, 0.88);
+  max-width: 30rem;
 }
 
 .hero-bleed__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-bottom: 18px;
+  margin-bottom: 20px;
 }
 
 .hero-bleed__quiet {
   margin: 0;
-  font-size: 0.92rem;
-  color: rgba(247, 246, 243, 0.7);
-}
-
-.hero-bleed__quiet a {
-  color: var(--accent-soft);
-  text-decoration: none;
-}
-
-.hero-bleed__quiet a:hover {
-  text-decoration: underline;
+  font-size: 0.9rem;
+  letter-spacing: 0.02em;
+  color: rgba(247, 246, 243, 0.68);
 }
 
 .kicker--on-dark {
@@ -3170,25 +3197,68 @@ a.case-card:hover h3 {
     gap: 0 36px;
   }
 
+  .hero-bleed__panel {
+    padding: 64px 0 72px;
+    width: min(100%, 40rem);
+  }
+
   .hero-bleed__content {
-    padding: 72px 0 80px;
+    max-width: 34rem;
   }
 }
 
 @media (min-width: 900px) {
-  .hero-bleed {
-    align-items: center;
+  .hero-bleed__media img {
+    object-position: 78% 14%;
   }
 
-  .hero-bleed__content {
-    max-width: 38rem;
-    margin-right: auto;
+  .hero-bleed__panel {
+    width: min(48%, 42rem);
+    min-height: calc(100svh - var(--header) - var(--mobile-cta));
+    padding: 72px 0;
+  }
+
+  .hero-bleed__logo {
+    width: min(300px, 100%);
+    margin-bottom: 32px;
+  }
+
+  .hero-bleed__title {
+    font-size: clamp(2.15rem, 2.8vw, 2.95rem);
+  }
+}
+
+@media (max-width: 719px) {
+  .hero-bleed__media img {
+    object-position: 68% 12%;
   }
 
   .hero-bleed__shade {
     background:
-      linear-gradient(90deg, rgba(0, 12, 60, 0.92) 0%, rgba(0, 24, 72, 0.62) 42%, rgba(0, 24, 72, 0.18) 72%, rgba(0, 24, 72, 0.08) 100%),
-      linear-gradient(0deg, rgba(0, 12, 60, 0.35) 0%, transparent 35%);
+      linear-gradient(
+        180deg,
+        rgba(0, 12, 48, 0.72) 0%,
+        rgba(0, 16, 56, 0.78) 38%,
+        rgba(0, 12, 48, 0.94) 100%
+      ),
+      linear-gradient(
+        90deg,
+        rgba(0, 12, 48, 0.88) 0%,
+        rgba(0, 24, 72, 0.55) 55%,
+        rgba(0, 24, 72, 0.28) 100%
+      );
+  }
+
+  .hero-bleed__panel {
+    align-items: end;
+    width: 100%;
+    padding: 36px 0 44px;
+  }
+
+  .hero-bleed__actions .btn {
+    flex: 1 1 12rem;
+    justify-content: center;
+    text-align: center;
   }
 }
 

@@ -40,7 +40,9 @@ export const practice = {
   portrait: "/portrait.jpg",
   portraitAvailable: true,
   portraitAlt: "Professional portrait of Fakorede Joel, VisionSpark Advisors",
-  logo: "/logo.jpg",
+  logo: "/logo.png",
+  /** Cream/gold treatment for navy fields (hero). */
+  logoOnDark: "/logo-on-dark.png",
   logoAvailable: true,
   logoAlt: "VisionSpark Advisors logo — Insight, Strategy, Growth",
   /** Additional approved photographs — add files under /public/photos/ before enabling. */

@@ -54,39 +54,41 @@ export function FullBleedHero() {
         ) : null}
         <div className="hero-bleed__shade" />
       </div>
-      <div className="container hero-bleed__content reveal">
-        {practice.logoAvailable ? (
-          <img
-            className="hero-bleed__logo"
-            src={practice.logo}
-            alt={practice.brand}
-            width={320}
-            height={105}
-            decoding="async"
-          />
-        ) : (
-          <p className="kicker kicker--on-dark">{practice.brand}</p>
-        )}
-        <h1 className="hero-bleed__title">
-          Position Your Experience for the Opportunities You’re Ready to Lead.
-        </h1>
-        <p className="hero-bleed__lede">
-          Executive career strategy and independent recruitment — held apart, evidence-led, and
-          built for how serious markets actually read leadership.
-        </p>
-        <div className="hero-bleed__actions">
-          <Link className="btn btn--light" to={cta.assessment.href}>
-            {cta.assessment.label}
-          </Link>
-          <Link className="btn btn--ghost-light" to={cta.explorePositioning.href}>
-            {cta.explorePositioning.label}
-          </Link>
+      <div className="hero-bleed__panel">
+        <div className="container hero-bleed__content reveal">
+          {practice.logoAvailable ? (
+            <img
+              className="hero-bleed__logo"
+              src={practice.logoOnDark || practice.logo}
+              alt={practice.brand}
+              width={360}
+              height={118}
+              decoding="async"
+            />
+          ) : (
+            <p className="hero-bleed__brand">{practice.brand}</p>
+          )}
+          <h1 className="hero-bleed__title">
+            Position Your Experience for the Opportunities You’re Ready to Lead.
+          </h1>
+          <p className="hero-bleed__lede">
+            Executive career strategy and independent recruitment — held apart, evidence-led, and
+            built for how serious markets actually read leadership.
+          </p>
+          <div className="hero-bleed__actions">
+            <Link className="btn btn--light" to={cta.assessment.href}>
+              {cta.assessment.label}
+            </Link>
+            <Link className="btn btn--ghost-light" to={cta.explorePositioning.href}>
+              {cta.explorePositioning.label}
+            </Link>
+          </div>
+          <p className="hero-bleed__quiet">
+            {practice.name}
+            <span aria-hidden="true"> · </span>
+            Executive Career Strategist
+          </p>
         </div>
-        <p className="hero-bleed__quiet">
-          {practice.name} · {practice.role}
-          {" · "}
-          <Link to={cta.talent.href}>Hiring? Discuss a Talent Requirement →</Link>
-        </p>
       </div>
     </section>
   );
