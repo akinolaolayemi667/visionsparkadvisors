@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { CtaBand } from "../components/Blocks";
+import { Portrait } from "../components/Portrait";
 import { cta, practice } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 
@@ -32,8 +33,9 @@ const expectations = [
 
 export function About() {
   usePageMeta(
-    "About Fakorede Joel — Executive Career Strategist",
-    "Where talent, positioning and opportunity meet. Fakorede Joel works at the intersection of recruitment, career strategy and professional positioning.",
+    "About Fakorede Joel — Executive Career Strategist & Independent Recruiter",
+    "Where talent, positioning and opportunity meet. Fakorede Joel works at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy.",
+    { path: "/about" },
   );
 
   return (
@@ -51,23 +53,8 @@ export function About() {
               {practice.role}
             </p>
           </div>
-          <div className="about-hero__media" aria-hidden={!practice.portraitAvailable}>
-            {practice.portraitAvailable ? (
-              <img
-                src={practice.portrait}
-                alt={`Professional portrait of ${practice.name}`}
-                width={720}
-                height={900}
-              />
-            ) : (
-              <div className="hero__placeholder about-placeholder">
-                <span className="hero__placeholder-mark" />
-                <p>
-                  {practice.name}
-                  <span>Professional portrait</span>
-                </p>
-              </div>
-            )}
+          <div className="about-hero__media">
+            <Portrait className="about-placeholder" width={720} height={900} />
           </div>
         </div>
       </header>
@@ -158,11 +145,28 @@ export function About() {
         </div>
       </section>
 
+      <section className="section section--tint">
+        <div className="container">
+          <p className="kicker">Core brand message</p>
+          <h2 className="section-title" style={{ maxWidth: "18em" }}>
+            Recruitment · Positioning · Résumé/CV · LinkedIn · Search
+          </h2>
+          <p className="deck" style={{ maxWidth: "40rem" }}>
+            {practice.brandMessage}
+          </p>
+          <ul className="include-list include-list--compact" style={{ marginTop: 18 }}>
+            {practice.differentiator.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <CtaBand
-        title="If the fit is real, the next step is a direct conversation."
-        text="Request a career assessment, or discuss a talent requirement if you are hiring."
-        primary={cta.assessment}
-        secondary={cta.talent}
+        title="Start a conversation."
+        text="If the fit is real, the next step is a direct, confidential exchange — advisory or recruitment, clearly identified."
+        primary={cta.conversation}
+        secondary={cta.assessment}
       />
     </>
   );

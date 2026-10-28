@@ -5,14 +5,23 @@ import { cta } from "../config";
 import { services, type Service } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
 
+function primaryFor(service: Service) {
+  if (service.employer) return cta.talent;
+  if (service.id === "resume") return cta.resumeAssessment;
+  if (service.id === "linkedin") return cta.linkedin;
+  if (service.id === "job-search") return cta.searchStrategy;
+  if (service.id === "positioning") return cta.executive;
+  return cta.assessment;
+}
+
 export function ServicePage({ service }: { service: Service }) {
-  usePageMeta(
-    `${service.title} — Fakorede Joel`,
-    service.summary,
-  );
+  usePageMeta(`${service.title} — Fakorede Joel`, service.summary, {
+    path: service.path,
+  });
 
   const related = services.filter((item) => item.id !== service.id).slice(0, 3);
   const showPositioningExtras = service.id === "positioning" || service.id === "resume";
+  const primary = primaryFor(service);
 
   return (
     <>
@@ -36,8 +45,9 @@ export function ServicePage({ service }: { service: Service }) {
               <p>
                 See also the{" "}
                 <Link to="/how-it-works#journey">candidate journey</Link>,{" "}
-                <Link to="/how-it-works#diagnostic">positioning diagnostic</Link>, and{" "}
-                <Link to="/how-it-works#before-after">before vs after</Link> examples.
+                <Link to="/how-it-works#diagnostic">positioning diagnostic</Link>,{" "}
+                <Link to="/how-it-works#before-after">before vs after</Link> examples, and the{" "}
+                <Link to="/career-advisory-terms">Career Advisory Terms</Link>.
               </p>
             ) : null}
           </div>
@@ -48,17 +58,10 @@ export function ServicePage({ service }: { service: Service }) {
           </div>
 
           <div className="hero__actions">
-            <Link
-              className="btn"
-              to={
-                service.employer
-                  ? cta.talent.href
-                  : `/contact?intent=${service.id === "resume" ? "resume" : service.id === "linkedin" ? "linkedin" : service.id === "job-search" ? "search-strategy" : service.id === "executive-board" ? "board" : "assessment"}`
-              }
-            >
-              {service.employer ? cta.talent.label : cta.assessment.label}
+            <Link className="btn" to={primary.href}>
+              {primary.label}
             </Link>
-            <Link className="text-link" to={service.cta.href === service.path ? "/how-it-works" : service.cta.href}>
+            <Link className="text-link" to="/how-it-works">
               How the work proceeds
             </Link>
           </div>
@@ -88,9 +91,9 @@ export function ServicePage({ service }: { service: Service }) {
         title={
           service.employer
             ? "Describe the mandate, and the conversation can begin."
-            : "If this is the work in front of you, start with an assessment."
+            : "If this is the work in front of you, take one clear next step."
         }
-        primary={service.employer ? cta.talent : cta.assessment}
+        primary={primary}
         secondary={service.employer ? cta.assessment : cta.talent}
       />
     </>

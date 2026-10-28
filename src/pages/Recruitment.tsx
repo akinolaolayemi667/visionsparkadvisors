@@ -129,9 +129,9 @@ export function Recruitment() {
       </section>
 
       <CtaBand
-        title="State whether you are hiring or wishing to be considered."
-        text="The routes are different, and they stay different."
-        primary={{ href: "/recruitment#hiring-enquiry", label: "Discuss Your Hiring Requirement" }}
+        title="Discuss a talent requirement."
+        text="Hiring leaders start with a mandate conversation. Candidates who wish to be considered use a separate route. The two stay distinct."
+        primary={{ href: "/recruitment#hiring-enquiry", label: "Discuss a Talent Requirement" }}
         secondary={{ href: "/contact?intent=candidacy", label: "Submit a Résumé/CV" }}
       />
     </>

@@ -115,11 +115,11 @@ export function ExecutiveBoard() {
           </div>
 
           <div className="hero__actions">
-            <Link className="btn" to="/contact?intent=board">
-              Discuss My Executive Positioning
+            <Link className="btn" to={cta.executive.href}>
+              {cta.executive.label}
             </Link>
-            <Link className="text-link" to="/how-it-works#diagnostic">
-              The positioning diagnostic
+            <Link className="btn btn--ghost" to={cta.board.href}>
+              {cta.board.label}
             </Link>
           </div>
 
@@ -130,8 +130,8 @@ export function ExecutiveBoard() {
       <CtaBand
         title="If the next conversation is C-Suite or Board, start with the evidence you already have."
         text="Share the level, the market and what you want clarified. Scope is agreed before advisory work begins."
-        primary={{ href: "/contact?intent=board", label: "Discuss My Executive Positioning" }}
-        secondary={cta.assessment}
+        primary={cta.executive}
+        secondary={cta.board}
       />
     </>
   );

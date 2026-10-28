@@ -76,7 +76,7 @@ export const services: Service[] = [
       "Profile consistency",
       "Executive narrative",
     ],
-    cta: { href: "/linkedin", label: "Optimize My LinkedIn" },
+    cta: { href: "/linkedin", label: "Strengthen My LinkedIn Positioning" },
   },
   {
     id: "job-search",

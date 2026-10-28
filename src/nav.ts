@@ -1,56 +1,64 @@
 export type NavItem = { to: string; label: string; short?: string };
 
-/** Primary site navigation, in the order shown across the practice. */
+/** Primary site navigation — kept usable on desktop; full list in mobile menu + footer. */
 export const primaryNav: NavItem[] = [
   { to: "/about", label: "About" },
-  { to: "/executive-career-positioning", label: "Executive Career Positioning", short: "Positioning" },
+  { to: "/executive-career-positioning", label: "Career Positioning", short: "Positioning" },
   { to: "/resume-cv", label: "Resume/CV" },
   { to: "/linkedin", label: "LinkedIn" },
-  { to: "/job-search-strategy", label: "Job Search Strategy", short: "Job Search" },
+  { to: "/job-search-strategy", label: "Job Search", short: "Job Search" },
   { to: "/executive-board", label: "Executive & Board", short: "Exec & Board" },
   { to: "/recruitment", label: "Recruitment" },
-  { to: "/how-it-works", label: "How It Works", short: "Approach" },
-  { to: "/packages", label: "Packages" },
   { to: "/insights", label: "Insights" },
   { to: "/faq", label: "FAQ" },
   { to: "/contact", label: "Contact" },
 ];
 
+/** Footer navigation per brand architecture. */
+export const footerNav: NavItem[] = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/executive-career-positioning", label: "Career Positioning" },
+  { to: "/resume-cv", label: "Resume/CV" },
+  { to: "/linkedin", label: "LinkedIn" },
+  { to: "/executive-board", label: "Executive & Board" },
+  { to: "/job-search-strategy", label: "Job Search Strategy" },
+  { to: "/recruitment", label: "Recruitment" },
+  { to: "/insights", label: "Insights" },
+  { to: "/faq", label: "FAQ" },
+  { to: "/contact", label: "Contact" },
+];
+
+export const footerLegal = [
+  { to: "/privacy", label: "Privacy Policy" },
+  { to: "/terms", label: "Terms" },
+  { to: "/cookies", label: "Cookie Policy" },
+  { to: "/candidate-notice", label: "Candidate Notice" },
+  { to: "/career-advisory-terms", label: "Career Advisory Terms" },
+];
+
+export const footerMore = [
+  { to: "/how-it-works", label: "How It Works" },
+  { to: "/packages", label: "Packages" },
+  { to: "/assessment", label: "Career Assessment" },
+  { to: "/executive-positioning-checklist", label: "Positioning Checklist" },
+  { to: "/executive-opportunities", label: "Outreach verification" },
+  { to: "/engagement-path", label: "Engagement path" },
+  { to: "/principles", label: "Principles" },
+];
+
+/** @deprecated Prefer footerNav / footerLegal / footerMore */
 export const footerColumns = [
   {
-    label: "Services",
-    links: [
-      { to: "/executive-career-positioning", label: "Career Positioning" },
-      { to: "/resume-cv", label: "Resume/CV" },
-      { to: "/linkedin", label: "LinkedIn" },
-      { to: "/job-search-strategy", label: "Job Search Strategy" },
-      { to: "/executive-board", label: "Executive & Board" },
-      { to: "/packages", label: "Packages" },
-      { to: "/recruitment", label: "Recruitment" },
-    ],
+    label: "Navigate",
+    links: footerNav,
   },
   {
     label: "Practice",
-    links: [
-      { to: "/about", label: "About" },
-      { to: "/how-it-works", label: "How It Works" },
-      { to: "/case-studies", label: "Case Studies" },
-      { to: "/insights", label: "Insights" },
-      { to: "/faq", label: "FAQ" },
-      { to: "/principles", label: "Principles" },
-      { to: "/privacy", label: "Privacy" },
-    ],
+    links: footerMore,
   },
   {
-    label: "Correspondence",
-    links: [
-      { to: "/assessment", label: "Career Assessment" },
-      { to: "/executive-positioning-checklist", label: "Positioning Checklist" },
-      { to: "/recruitment#hiring-enquiry", label: "Hiring Requirement" },
-      { to: "/contact?intent=board", label: "Executive Positioning" },
-      { to: "/contact?intent=candidacy", label: "Submit a Résumé/CV" },
-      { to: "/executive-opportunities", label: "Outreach verification" },
-      { to: "/contact", label: "Contact" },
-    ],
+    label: "Legal",
+    links: footerLegal,
   },
 ];

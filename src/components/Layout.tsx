@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
-import { cta, practice } from "../config";
-import { footerColumns, primaryNav } from "../nav";
+import { cta, practice, socials } from "../config";
+import { footerLegal, footerMore, footerNav, primaryNav } from "../nav";
 
 function navClass({ isActive }: { isActive: boolean }) {
   return isActive ? "nav__link is-active" : "nav__link";
@@ -61,12 +61,7 @@ export function Layout() {
           </Link>
           <nav className="nav" aria-label="Primary">
             {primaryNav.map((item) => (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                className={navClass}
-                aria-label={item.label}
-              >
+              <NavLink key={item.to} to={item.to} className={navClass} aria-label={item.label}>
                 <span className="nav__full" aria-hidden="true">
                   {item.label}
                 </span>
@@ -125,6 +120,16 @@ export function Layout() {
                 </NavLink>
               </li>
             ))}
+            <li>
+              <NavLink to="/how-it-works" className={navClass} onClick={() => setOpen(false)}>
+                How It Works
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/packages" className={navClass} onClick={() => setOpen(false)}>
+                Packages
+              </NavLink>
+            </li>
           </ul>
           <div className="overlay__actions">
             <Link className="btn" to={cta.assessment.href} onClick={() => setOpen(false)}>
@@ -143,39 +148,80 @@ export function Layout() {
 
       <footer className="footer" inert={open || undefined}>
         <div className="container">
-          <p className="footer__statement">{practice.statement}</p>
-          <div className="footer__grid">
+          <div className="footer__identity">
+            <p className="footer__name">{practice.name}</p>
+            <p className="footer__role">{practice.role}</p>
+            {practice.email ? (
+              <p>
+                <a href={`mailto:${practice.email}`}>{practice.email}</a>
+              </p>
+            ) : (
+              <p className="footer__placeholder">[Professional Email]</p>
+            )}
+          </div>
+
+          <div className="footer__grid footer__grid--brand">
+            <div>
+              <p className="footer__label">Navigate</p>
+              <ul>
+                {footerNav.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
             <div>
               <p className="footer__label">Practice</p>
-              <p style={{ marginTop: 0 }}>{practice.role}</p>
-              <p className="footer__supporting">{practice.supporting}</p>
-              {practice.email ? (
-                <p>
-                  <a href={`mailto:${practice.email}`}>{practice.email}</a>
-                </p>
-              ) : null}
+              <ul>
+                {footerMore.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
             </div>
-            {footerColumns.map((column) => (
-              <div key={column.label}>
-                <p className="footer__label">{column.label}</p>
-                <ul>
-                  {column.links.map((link) => (
-                    <li key={link.to}>
-                      <Link to={link.to}>{link.label}</Link>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+            <div>
+              <p className="footer__label">Legal</p>
+              <ul>
+                {footerLegal.map((link) => (
+                  <li key={link.to}>
+                    <Link to={link.to}>{link.label}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <p className="footer__label">Professional profiles</p>
+              <ul className="footer__socials">
+                {socials.map((item) => (
+                  <li key={item.id} className={item.dominant ? "is-dominant" : undefined}>
+                    {item.href ? (
+                      <a href={item.href} rel="noopener noreferrer" target="_blank">
+                        {item.label}
+                        {item.dominant ? " (primary)" : ""}
+                      </a>
+                    ) : (
+                      <span className="footer__placeholder" title="URL to be supplied">
+                        {item.label}: {item.placeholder}
+                      </span>
+                    )}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
+
+          <p className="footer__statement">{practice.statement}</p>
           <p className="footer__fine">
             Career advisory is an independent professional service. No interview, placement, Board
             appointment, executive appointment, or employment outcome is guaranteed. Purchasing
-            advisory services is never a condition of recruitment consideration.
+            advisory services is never a condition of recruitment consideration. ContactOut, where
+            used, is a professional sourcing/research platform — not an employer of {practice.name}.
           </p>
           <div className="footer__bar">
             <span>
-              © {new Date().getFullYear()} {practice.name}
+              © {new Date().getFullYear()} {practice.name}. All Rights Reserved.
             </span>
             <span>Independent practice</span>
           </div>

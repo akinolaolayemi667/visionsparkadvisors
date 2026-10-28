@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { Assurance, CtaBand, SectionHead } from "../components/Blocks";
+import { Assurance, SectionHead } from "../components/Blocks";
+import { Portrait } from "../components/Portrait";
 import {
   BeforeAfterPositioning,
   CandidateJourney,
@@ -20,29 +21,15 @@ import { usePageMeta } from "../hooks/usePageMeta";
 export function Home() {
   usePageMeta(
     "Fakorede Joel — Executive Career Strategist & Independent Recruiter",
-    "Position your experience for the opportunities you’re ready to lead. Executive career strategy, resume/CV and LinkedIn positioning, job-search advisory, and independent recruitment.",
+    "Position your experience for the opportunities you’re ready to lead. Executive career strategy, résumé/CV and LinkedIn positioning, job-search advisory, and independent recruitment — evidence-led and confidential.",
+    { path: "/" },
   );
 
   return (
     <>
       <section className="hero hero--portrait">
-        <div className="hero__media" aria-hidden={!practice.portraitAvailable}>
-          {practice.portraitAvailable ? (
-            <img
-              src={practice.portrait}
-              alt={`Professional portrait of ${practice.name}`}
-              width={900}
-              height={1100}
-            />
-          ) : (
-            <div className="hero__placeholder">
-              <span className="hero__placeholder-mark" />
-              <p>
-                {practice.name}
-                <span>Professional portrait</span>
-              </p>
-            </div>
-          )}
+        <div className="hero__media">
+          <Portrait priority />
         </div>
         <div className="hero__copy">
           <p className="kicker">{practice.name}</p>
@@ -230,7 +217,30 @@ export function Home() {
         </div>
       </section>
 
-      <CtaBand />
+      <section className="cta-band cta-band--finale" id="begin">
+        <div className="container cta-band__inner">
+          <div>
+            <h2>Your Experience Has Value. Make Sure the Market Can See It.</h2>
+            <p>
+              Whether you&apos;re preparing for your next executive move, repositioning for greater
+              responsibility, exploring Board opportunities or simply ensuring your professional
+              narrative reflects the level at which you operate, the first step is understanding how
+              your current positioning is working.
+            </p>
+          </div>
+          <div className="cta-band__actions">
+            <Link className="btn btn--light" to={cta.assessment.href}>
+              {cta.assessment.label}
+            </Link>
+            <Link className="btn btn--ghost-light" to={cta.explorePositioning.href}>
+              {cta.explorePositioning.label}
+            </Link>
+          </div>
+          <p className="cta-band__employer">
+            Hiring? <Link to={cta.talent.href}>Discuss a Talent Requirement →</Link>
+          </p>
+        </div>
+      </section>
     </>
   );
 }

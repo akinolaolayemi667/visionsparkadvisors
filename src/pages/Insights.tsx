@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
-import { PageHeader } from "../components/Blocks";
+import { CtaBand, PageHeader } from "../components/Blocks";
+import { cta } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 import { insightCategories, insights } from "../insights";
 
@@ -10,6 +11,7 @@ export function Insights() {
   usePageMeta(
     "Insights — Fakorede Joel",
     "Professional insights on executive careers, résumé/CV strategy, LinkedIn positioning, Board careers, job-search strategy, executive search and recruitment.",
+    { path: "/insights" },
   );
 
   const filtered = useMemo(
@@ -60,6 +62,12 @@ export function Insights() {
           ) : null}
         </div>
       </section>
+      <CtaBand
+        title="If the reading resonates, the next step is a structured conversation."
+        text="Request a career assessment to understand how your current positioning is working."
+        primary={cta.assessment}
+        secondary={cta.explorePositioning}
+      />
     </>
   );
 }

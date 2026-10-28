@@ -4,7 +4,9 @@ import { About } from "./pages/About";
 import { Assessment } from "./pages/Assessment";
 import { CaseStudies, CaseStudyArticle } from "./pages/CaseStudies";
 import { Checklist } from "./pages/Checklist";
+import { ClientPortal } from "./pages/ClientPortal";
 import { Contact } from "./pages/Contact";
+import { EngagementPath } from "./pages/EngagementPath";
 import { ExecutiveBoard } from "./pages/ExecutiveBoard";
 import { ExecutiveOpportunities } from "./pages/ExecutiveOpportunities";
 import { Faq } from "./pages/Faq";
@@ -12,10 +14,16 @@ import { Home } from "./pages/Home";
 import { HowItWorks } from "./pages/HowItWorks";
 import { InsightArticle } from "./pages/InsightArticle";
 import { Insights } from "./pages/Insights";
+import {
+  AdvisoryTerms,
+  CandidateNotice,
+  Cookies,
+  Privacy,
+  Terms,
+} from "./pages/LegalPages";
 import { NotFound } from "./pages/NotFound";
 import { Packages } from "./pages/Packages";
 import { Principles } from "./pages/Principles";
-import { Privacy } from "./pages/Privacy";
 import { Recruitment } from "./pages/Recruitment";
 import {
   JobSearchPage,
@@ -41,6 +49,8 @@ export default function App() {
         <Route path="assessment" element={<Assessment />} />
         <Route path="executive-positioning-checklist" element={<Checklist />} />
         <Route path="executive-opportunities" element={<ExecutiveOpportunities />} />
+        <Route path="engagement-path" element={<EngagementPath />} />
+        <Route path="client-portal" element={<ClientPortal />} />
         <Route path="case-studies" element={<CaseStudies />} />
         <Route path="case-studies/:slug" element={<CaseStudyArticle />} />
         <Route path="insights" element={<Insights />} />
@@ -49,8 +59,11 @@ export default function App() {
         <Route path="contact" element={<Contact />} />
         <Route path="principles" element={<Principles />} />
         <Route path="privacy" element={<Privacy />} />
+        <Route path="terms" element={<Terms />} />
+        <Route path="cookies" element={<Cookies />} />
+        <Route path="candidate-notice" element={<CandidateNotice />} />
+        <Route path="career-advisory-terms" element={<AdvisoryTerms />} />
 
-        {/* Legacy paths from the first information architecture */}
         <Route path="engage" element={<Navigate to="/contact" replace />} />
         <Route path="services" element={<Navigate to="/#services" replace />} />
         <Route path="advisory" element={<Navigate to="/executive-career-positioning" replace />} />
