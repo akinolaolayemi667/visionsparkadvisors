@@ -443,7 +443,7 @@ main {
 }
 
 .btn:hover {
-  background: #2c2824;
+  background: var(--navy-mid);
 }
 
 .btn--small {
