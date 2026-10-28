@@ -98,6 +98,7 @@ export function Home() {
         </div>
       </section>
 
+      <SampleWorksSection />
       <ApproachPillars compact />
       <PackagesSection compact />
       <CandidateJourney compact />
@@ -107,7 +108,6 @@ export function Home() {
       <ConfidentialitySection />
       <WorkMethodSection />
       <TestimonialsSection />
-      <SampleWorksSection />
       <CaseStudiesSection />
 
       <section className="section">
