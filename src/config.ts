@@ -39,8 +39,7 @@ export const practice = {
   portraitAlt: "Professional portrait of Fakorede Joel, VisionSpark Advisors",
   /** Additional approved photographs — add files under /public/photos/ before enabling. */
   photos: [] as { src: string; alt: string }[],
-  /** [Professional Email] — set when ready to publish. */
-  email: "",
+  email: "joelfacco.positioning@gmail.com",
   phone: "",
   /** [Booking Link] — optional scheduling URL when approved. */
   bookingUrl: "",
@@ -75,7 +74,7 @@ export const socials: SocialLink[] = [
   {
     id: "facebook",
     label: "Facebook",
-    href: "",
+    href: "https://www.facebook.com/share/19c5Wa3VJT/",
     placeholder: "[Facebook URL]",
   },
   {
@@ -83,6 +82,12 @@ export const socials: SocialLink[] = [
     label: "X",
     href: "https://x.com/joelliterary",
     placeholder: "[X URL]",
+  },
+  {
+    id: "tiktok",
+    label: "TikTok",
+    href: "https://www.tiktok.com/@joel.facc",
+    placeholder: "[TikTok URL]",
   },
   {
     id: "threads",
