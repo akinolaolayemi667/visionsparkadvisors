@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { CtaBand, PageHeader } from "../components/Blocks";
-import { practice } from "../config";
+import { cta, practice } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 const expectations = [
@@ -101,16 +101,25 @@ export function About() {
               communication.
             </p>
             <p>
-              <Link className="text-link" to="/approach">
-                The approach
+              A visitor who searches my name after receiving outreach should leave this page clear
+              on who I am, what I do, who I work with, how confidentiality is handled, and how
+              recruitment differs from paid career advisory.
+            </p>
+            <p>
+              <Link className="text-link" to="/how-it-works">
+                How it works
+              </Link>
+              {" · "}
+              <Link className="text-link" to="/faq">
+                FAQ
               </Link>
               {" · "}
               <Link className="text-link" to="/principles">
                 Principles
               </Link>
               {" · "}
-              <Link className="text-link" to="/perspectives">
-                Perspectives
+              <Link className="text-link" to="/insights">
+                Insights
               </Link>
             </p>
           </div>
@@ -118,7 +127,9 @@ export function About() {
       </section>
       <CtaBand
         title="If the fit is real, the next step is a direct conversation."
-        text="Say whether you need advisory, a search, or to be considered. I will answer on that basis."
+        text="Request a career assessment, or discuss a talent requirement if you are hiring."
+        primary={cta.assessment}
+        secondary={cta.talent}
       />
     </>
   );

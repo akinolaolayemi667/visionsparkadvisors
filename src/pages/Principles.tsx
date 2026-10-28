@@ -1,4 +1,5 @@
 import { Assurance, CtaBand, PageHeader } from "../components/Blocks";
+import { cta } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Principles() {
@@ -59,7 +60,7 @@ export function Principles() {
           </div>
         </div>
       </section>
-      <CtaBand />
+      <CtaBand primary={cta.assessment} secondary={cta.talent} />
     </>
   );
 }

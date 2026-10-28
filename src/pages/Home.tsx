@@ -1,238 +1,195 @@
 import { Link } from "react-router-dom";
-import { CtaBand, Chain, SectionHead } from "../components/Blocks";
-import { practice } from "../config";
-import { dimensions, engagementSteps, featuredTitles, homeAudiences } from "../content";
+import { Assurance, CtaBand, SectionHead } from "../components/Blocks";
+import { cta, practice } from "../config";
+import { audienceCards, authorityFlow, services } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
-
-const featured = featuredTitles
-  .map((title) => dimensions.find((item) => item.title === title))
-  .filter((item): item is (typeof dimensions)[number] => Boolean(item));
 
 export function Home() {
   usePageMeta(
     "Fakorede Joel — Executive Career Strategist & Independent Recruiter",
-    "Fakorede Joel helps executives, senior leaders, and selected professionals position experience, leadership value, and career potential. Independent recruiting and career advisory are separate practices.",
+    "Position your experience for the opportunities you’re ready to lead. Executive career strategy, resume/CV and LinkedIn positioning, job-search advisory, and independent recruitment.",
   );
 
   return (
     <>
-      <section className="hero">
-        <div className="container hero__grid">
-          <div>
-            <p className="kicker">{practice.name}</p>
-            <h1 className="hero__title">
-              <span>Positioning leadership.</span>
-              <span>Connecting talent.</span>
-              <span className="em">Creating career momentum.</span>
-            </h1>
-            <p className="role">Executive Career Strategist · Independent Recruiter</p>
+      <section className="hero hero--portrait">
+        <div className="hero__media" aria-hidden={!practice.portraitAvailable}>
+          {practice.portraitAvailable ? (
+            <img
+              src={practice.portrait}
+              alt={`Professional portrait of ${practice.name}`}
+              width={900}
+              height={1100}
+            />
+          ) : (
+            <div className="hero__placeholder">
+              <span className="hero__placeholder-mark" />
+              <p>
+                {practice.name}
+                <span>Professional portrait</span>
+              </p>
+            </div>
+          )}
+        </div>
+        <div className="hero__copy">
+          <p className="kicker">{practice.name}</p>
+          <h1 className="hero__title">
+            Position Your Experience for the Opportunities You’re Ready to Lead.
+          </h1>
+          <p className="role">{practice.supporting}</p>
+          <div className="hero__prose">
             <p className="lede">
-              I help executives, senior leaders, and professionals strengthen how their experience,
-              leadership value, achievements, and career potential are positioned in competitive
-              markets.
+              Strong careers deserve strong positioning.
             </p>
-            <div className="hero__actions">
-              <Link className="btn" to="/engage?intent=advisory">
-                Request a conversation
-              </Link>
-              <Link className="text-link" to="/approach">
-                The positioning approach
-              </Link>
-            </div>
-            <p className="hero__quiet">
-              Hiring for a role? <Link to="/engage?intent=search">Discuss a search mandate</Link>
+            <p>
+              I work with executives, senior leaders and professionals to translate experience,
+              leadership scope and measurable impact into clear market positioning — while helping
+              organizations identify talent capable of delivering meaningful business outcomes.
+            </p>
+            <p>
+              From executive résumé/CV strategy and LinkedIn positioning to job-search advisory and
+              independent recruitment, my work sits at the intersection of talent, opportunity and
+              positioning.
             </p>
           </div>
-          <aside className="panel" aria-label="Practice index">
-            <p className="panel__label">The practice</p>
-            <ol>
-              <li>
-                <span>01</span> Executive career strategy
-              </li>
-              <li>
-                <span>02</span> Independent recruiting
-              </li>
-              <li>
-                <span>03</span> Résumé and CV positioning
-              </li>
-              <li>
-                <span>04</span> LinkedIn positioning
-              </li>
-              <li>
-                <span>05</span> Board and C-suite positioning
-              </li>
-            </ol>
-          </aside>
-        </div>
-      </section>
-
-      <section className="band" aria-label="Areas of practice">
-        <div className="container">
-          <p>{practice.supporting}</p>
-        </div>
-      </section>
-
-      <section className="section section--tint">
-        <div className="container">
-          <SectionHead
-            kicker="01 — The hiring equation"
-            title="Both sides of the decision, held in one practice."
-            deck="I understand what a candidate needs to communicate, and what recruiters, hiring leaders, search professionals, and decision-makers need to understand."
-          />
-          <div className="split">
-            <div className="split__col">
-              <p className="kicker">From the candidate</p>
-              <h3>A true account of leadership value</h3>
-              <p>
-                The substance of a career: judgment, scope, and the difference a leader made.
-                Context, constraints, and consequence — told so the person who lived the work
-                still recognizes it.
-              </p>
-            </div>
-            <div className="split__col">
-              <p className="kicker">From the decision-maker</p>
-              <h3>Evidence that can be assessed</h3>
-              <p>
-                Whether the record supports the role. Scale, accountability, stakeholders, and the
-                conditions under which results were achieved. Enough clarity to advance a
-                conversation, or to decline one fairly.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="manifesto">
-        <div className="container">
-          <p className="kicker kicker--light">02 — Positioning philosophy</p>
-          <blockquote>Strong experience alone does not guarantee strong market positioning.</blockquote>
-          <p className="deck">
-            Accomplished professionals often describe a career as a list of duties. Markets respond
-            to evidence of value: scale, scope, commercial or institutional impact, governance, and
-            the complexity a leader has actually held. My role is to turn experience into a
-            compelling, credible, evidence-based market narrative.
-          </p>
-          <p style={{ marginTop: 28 }}>
-            <Link className="text-link text-link--light" to="/approach">
-              Read the approach
+          <div className="hero__actions">
+            <Link className="btn" to={cta.assessment.href}>
+              {cta.assessment.label}
             </Link>
+            <Link className="btn btn--ghost" to={cta.services.href}>
+              {cta.services.label}
+            </Link>
+          </div>
+          <p className="hero__quiet">
+            Looking for talent?{" "}
+            <Link to={cta.talent.href}>Discuss a Search Requirement →</Link>
           </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <SectionHead
-            kicker="03 — The sequence"
-            title="A résumé is one part of a market position."
-            deck="The work aligns the full sequence, so the document, the public profile, the search, and the interview tell the same truth."
-          />
-          <Chain />
-        </div>
-      </section>
-
-      <section className="section section--tint">
-        <div className="container">
-          <SectionHead
-            kicker="04 — What often stays implicit"
-            title="The market reads for what the duties leave out."
-            deck="These are dimensions I listen for. A career rarely needs all of them. It does need the ones that are true, stated at the right altitude."
-          />
-          <div className="dims">
-            {featured.map((item) => (
-              <article className="dim" key={item.title}>
-                <strong>{item.title}</strong>
-                <p>{item.text}</p>
-              </article>
+          <p className="trust-marks" aria-label="Practice standards">
+            {practice.trustMarks.map((mark) => (
+              <span key={mark}>{mark}</span>
             ))}
-          </div>
-          <p className="more-link">
-            <Link className="text-link" to="/approach">
-              The full positioning lens
-            </Link>
           </p>
         </div>
       </section>
 
-      <section className="section">
+      <section className="section section--tint" id="authority">
         <div className="container">
           <SectionHead
-            kicker="05 — Two practices"
-            title="Recruitment and advisory, held apart."
-            deck="They meet different needs. They are engaged separately. One is never the price of the other."
+            kicker="Authority"
+            title="Experience Is Valuable. Positioning Determines How That Value Is Understood."
+            deck="A successful career can still be undersold by weak positioning."
           />
-          <div className="practices">
-            <Link className="practice" to="/recruitment">
-              <p className="kicker">Recruitment</p>
-              <h3>Genuine opportunities</h3>
-              <p>
-                I source, assess, and consider candidates for real employment opportunities. The
-                obligation is to the role, and to a fair reading of fit.
-              </p>
-              <span className="text-link">How recruiting works</span>
-            </Link>
-            <Link className="practice" to="/advisory">
-              <p className="kicker">Candidate-paid advisory</p>
-              <h3>Positioning, engaged independently</h3>
-              <p>
-                Individuals engage me for résumé and CV positioning, LinkedIn, job-search strategy,
-                interview preparation, and broader career counsel.
-              </p>
-              <span className="text-link">Advisory services</span>
-            </Link>
+          <div className="prose prose--wide authority-copy">
+            <p>
+              A professional may have led teams, managed significant budgets, transformed
+              operations, delivered revenue growth, entered new markets, advised Boards or managed
+              complex stakeholder environments — yet none of that matters if the value is difficult
+              for the reader to identify.
+            </p>
+            <p>
+              My work helps connect what you have accomplished with what the market needs to
+              understand about you.
+            </p>
           </div>
-          <p className="quiet-note">
-            Purchasing advisory, résumé, LinkedIn, or positioning services is never a condition of
-            being considered for a genuine opportunity.{" "}
-            <Link to="/principles">The professional boundaries</Link>
-          </p>
-        </div>
-      </section>
-
-      <section className="section section--tint">
-        <div className="container">
-          <SectionHead
-            kicker="06 — Who the work serves"
-            title="Executive in character. Specific in audience."
-            deck="The practice is built for senior leadership and remains available, with the same discretion, to directors, public-sector professionals, and selected earlier careers."
-          />
-          <div className="audience-grid">
-            {homeAudiences.map((item) => (
-              <Link className="audience-card" to={item.href} key={item.title}>
-                <p className="kicker">{item.kicker}</p>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <span className="text-link">{item.label}</span>
-              </Link>
-            ))}
-          </div>
-          <p className="quiet-note">
-            Entry-level and early-career work sits in its own section, so the executive standard of
-            the practice stays clear. <Link to="/emerging">Emerging talent</Link>
-          </p>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <SectionHead
-            kicker="07 — An engagement"
-            title="How the work proceeds."
-            deck="Fees, where advisory is involved, are discussed once the scope is clear. Nothing is started on assumption."
-          />
-          <ol className="steps">
-            {engagementSteps.map((step) => (
-              <li className="step" key={step.n}>
-                <span>{step.n}</span>
-                <h3>{step.title}</h3>
+          <ol className="flow" aria-label="Positioning sequence">
+            {authorityFlow.map((step, index) => (
+              <li key={step.title}>
+                <span className="flow__n">{String(index + 1).padStart(2, "0")}</span>
+                <strong>{step.title}</strong>
                 <p>{step.text}</p>
               </li>
             ))}
           </ol>
-          <p className="quiet-note">
-            No interview, placement, Board appointment, or executive appointment is guaranteed.
-            Recommendations follow professional assessment and the information available.
-          </p>
+        </div>
+      </section>
+
+      <section className="section" id="audiences">
+        <div className="container">
+          <SectionHead
+            kicker="Who I work with"
+            title="Career Positioning Across Leadership Levels"
+            deck="The practice is executive in character. Audiences are named specifically so the right people recognize themselves."
+          />
+          <div className="audience-board">
+            {audienceCards.map((card) => (
+              <article
+                key={card.id}
+                className={card.dominant ? "audience-tile audience-tile--dominant" : "audience-tile"}
+              >
+                <p className="kicker">{card.dominant ? "Primary" : "Also served"}</p>
+                <h3>{card.title}</h3>
+                <p className="audience-tile__people">{card.people}</p>
+                <p>{card.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--tint" id="services">
+        <div className="container">
+          <SectionHead
+            kicker="Core services"
+            title="One Career. One Narrative. One Integrated Positioning Strategy."
+            deck="Executive career positioning involves considerably more than résumé writing. Each service is an instrument of the same narrative — or, for employers, a separate recruitment practice."
+          />
+          <div className="service-board">
+            {services.map((service) => (
+              <article
+                key={service.id}
+                className={
+                  service.premium
+                    ? "service-card service-card--premium"
+                    : service.employer
+                      ? "service-card service-card--employer"
+                      : "service-card"
+                }
+              >
+                <p className="kicker">{service.kicker}</p>
+                <h3>{service.title}</h3>
+                <p className="service-card__summary">{service.summary}</p>
+                <ul className="include-list include-list--compact">
+                  {service.includes.slice(0, 6).map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <Link className="text-link" to={service.cta.href}>
+                  {service.cta.label}
+                </Link>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container">
+          <SectionHead
+            kicker="Trust"
+            title="Two practices. One standard of evidence."
+            deck="When someone receives outreach and checks this site, the separation should be unmistakable — and the professionalism should reinforce the original communication."
+          />
+          <div className="practices">
+            <Link className="practice" to="/executive-career-positioning">
+              <p className="kicker">Candidate-paid advisory</p>
+              <h3>Career positioning</h3>
+              <p>
+                Assessment, résumé/CV, LinkedIn, job-search strategy, interview positioning and
+                Board narratives — engaged independently by the individual.
+              </p>
+              <span className="text-link">Request a Career Assessment</span>
+            </Link>
+            <Link className="practice" to="/recruitment">
+              <p className="kicker">Independent recruitment</p>
+              <h3>Talent requirements</h3>
+              <p>
+                Organizations and hiring decision-makers engage me to identify, assess and engage
+                professionals for genuine employment opportunities.
+              </p>
+              <span className="text-link">Discuss a Talent Requirement</span>
+            </Link>
+          </div>
+          <Assurance />
         </div>
       </section>
 

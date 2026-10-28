@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { boundaries, chain } from "../content";
+import { cta } from "../config";
 
 export function PageHeader({
   kicker,
@@ -75,14 +76,14 @@ export function Assurance() {
 
 export function CtaBand({
   title = "A confidential conversation is the right first step.",
-  text = "Advisory and recruitment begin in different places. Say which conversation you need, and it will be treated accordingly.",
-  primary = { href: "/engage?intent=advisory", label: "Request a conversation" },
-  secondary = { href: "/engage?intent=search", label: "Discuss a search" },
+  text = "Request a career assessment, or discuss a talent requirement if you are hiring. Each route is read differently.",
+  primary = cta.assessment,
+  secondary = cta.talent,
 }: {
   title?: string;
   text?: string;
   primary?: { href: string; label: string };
-  secondary?: { href: string; label: string };
+  secondary?: { href: string; label: string } | null;
 }) {
   return (
     <section className="cta-band">
@@ -103,5 +104,15 @@ export function CtaBand({
         </div>
       </div>
     </section>
+  );
+}
+
+export function IncludeList({ items }: { items: string[] }) {
+  return (
+    <ul className="include-list">
+      {items.map((item) => (
+        <li key={item}>{item}</li>
+      ))}
+    </ul>
   );
 }

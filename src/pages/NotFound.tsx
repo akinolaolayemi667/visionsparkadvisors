@@ -17,7 +17,7 @@ export function NotFound() {
           <Link className="btn" to="/">
             Return home
           </Link>
-          <Link className="text-link" to="/engage">
+          <Link className="text-link" to="/contact">
             Contact
           </Link>
         </div>

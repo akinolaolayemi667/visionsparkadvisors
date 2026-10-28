@@ -17,30 +17,35 @@ const contexts = [
 ];
 
 const natures = [
-  "Executive career strategy",
-  "Career-market positioning",
+  "Career assessment",
+  "Executive career positioning",
   "Résumé / CV positioning",
   "LinkedIn positioning",
-  "Leadership branding",
-  "Executive job search",
+  "Executive job search strategy",
+  "Executive & Board positioning",
   "Opportunity assessment",
   "Interview positioning",
-  "Search-firm communication",
-  "Board and C-suite positioning",
-  "Professional career advisory",
-  "Recruitment — I am hiring for a role",
-  "Recruitment — please consider my candidacy",
+  "Schedule an initial consultation",
+  "Discuss my next career move",
+  "Recruitment — discuss a talent requirement",
+  "Recruitment — please consider my candidacy / submit résumé",
   "Emerging talent",
   "A general conversation",
 ];
 
 const intentToNature: Record<string, string> = {
-  advisory: "Executive career strategy",
+  assessment: "Career assessment",
+  advisory: "Career assessment",
+  positioning: "Executive career positioning",
   resume: "Résumé / CV positioning",
   linkedin: "LinkedIn positioning",
-  search: "Recruitment — I am hiring for a role",
-  candidacy: "Recruitment — please consider my candidacy",
-  board: "Board and C-suite positioning",
+  "search-strategy": "Executive job search strategy",
+  "job-search": "Executive job search strategy",
+  talent: "Recruitment — discuss a talent requirement",
+  search: "Recruitment — discuss a talent requirement",
+  candidacy: "Recruitment — please consider my candidacy / submit résumé",
+  board: "Executive & Board positioning",
+  "executive-board": "Executive & Board positioning",
   emerging: "Emerging talent",
   interview: "Interview positioning",
   opportunity: "Opportunity assessment",
@@ -72,7 +77,7 @@ export function EnquiryForm() {
   useEffect(() => {
     const mapped = intentToNature[intent];
     if (mapped) setNature(mapped);
-    if (intent === "search") setContext("Hiring leader");
+    if (intent === "search" || intent === "talent") setContext("Hiring leader");
   }, [intent]);
 
   const letter = useMemo(() => {
