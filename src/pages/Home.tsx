@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { Assurance, SectionHead } from "../components/Blocks";
-import { Portrait } from "../components/Portrait";
+import {
+  FullBleedHero,
+  IntersectionEcosystem,
+  MarketVocabulary,
+  OutreachTrustStrip,
+} from "../components/Signature";
 import {
   BeforeAfterPositioning,
   CandidateJourney,
@@ -16,97 +21,22 @@ import {
   WorkMethodSection,
 } from "../components/TrustSections";
 import { cta, practice } from "../config";
-import { audienceCards, authorityFlow, services } from "../services";
+import { audienceCards, services } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Home() {
   usePageMeta(
     "VisionSpark Advisors — Fakorede Joel | Executive Career Strategist & Independent Recruiter",
-    "VisionSpark Advisors: executive career positioning, résumé/CV and LinkedIn strategy, job-search advisory, and independent recruitment — evidence-led and confidential.",
+    "VisionSpark Advisors sits at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy — evidence-led and confidential.",
     { path: "/" },
   );
 
   return (
     <>
-      <section className="hero hero--portrait">
-        <div className="hero__media">
-          <Portrait priority />
-        </div>
-        <div className="hero__copy">
-          <p className="kicker">{practice.brand}</p>
-          <h1 className="hero__title">
-            Position Your Experience for the Opportunities You’re Ready to Lead.
-          </h1>
-          <p className="role">
-            {practice.name} · {practice.role}
-          </p>
-          <p className="role role--support">{practice.supporting}</p>
-          <div className="hero__prose">
-            <p className="lede">
-              Strong careers deserve strong positioning.
-            </p>
-            <p>
-              I work with executives, senior leaders and professionals to translate experience,
-              leadership scope and measurable impact into clear market positioning — while helping
-              organizations identify talent capable of delivering meaningful business outcomes.
-            </p>
-            <p>
-              From executive résumé/CV strategy and LinkedIn positioning to job-search advisory and
-              independent recruitment, my work sits at the intersection of talent, opportunity and
-              positioning.
-            </p>
-          </div>
-          <div className="hero__actions">
-            <Link className="btn" to={cta.assessment.href}>
-              {cta.assessment.label}
-            </Link>
-            <Link className="btn btn--ghost" to={cta.services.href}>
-              {cta.services.label}
-            </Link>
-          </div>
-          <p className="hero__quiet">
-            Looking for talent?{" "}
-            <Link to={cta.talent.href}>Discuss a Search Requirement →</Link>
-          </p>
-          <p className="trust-marks" aria-label="Practice standards">
-            {practice.trustMarks.map((mark) => (
-              <span key={mark}>{mark}</span>
-            ))}
-          </p>
-        </div>
-      </section>
-
-      <section className="section section--tint" id="authority">
-        <div className="container">
-          <SectionHead
-            kicker="Authority"
-            title="Experience Is Valuable. Positioning Determines How That Value Is Understood."
-            deck="A successful career can still be undersold by weak positioning."
-          />
-          <div className="prose prose--wide authority-copy">
-            <p>
-              A professional may have held P&L leadership, delivered revenue growth, led operational
-              excellence or business transformation, expanded into new markets, advised Boards, or
-              managed complex stakeholder environments — yet none of that matters if enterprise
-              value and strategic judgment are difficult for the reader to identify.
-            </p>
-            <p>
-              My work helps connect what you have accomplished with what the market needs to
-              understand about you: commercial impact, governance exposure, change leadership and
-              the evidence of organizational leadership that decision-makers actually assess.
-            </p>
-          </div>
-          <ol className="flow" aria-label="Positioning sequence">
-            {authorityFlow.map((step, index) => (
-              <li key={step.title}>
-                <span className="flow__n">{String(index + 1).padStart(2, "0")}</span>
-                <strong>{step.title}</strong>
-                <p>{step.text}</p>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </section>
+      <FullBleedHero />
+      <OutreachTrustStrip />
+      <IntersectionEcosystem />
+      <MarketVocabulary />
 
       <section className="section" id="audiences">
         <div className="container">
@@ -119,7 +49,7 @@ export function Home() {
             {audienceCards.map((card) => (
               <article
                 key={card.id}
-                className={card.dominant ? "audience-tile audience-tile--dominant" : "audience-tile"}
+                className={card.dominant ? "audience-tile audience-tile--dominant reveal" : "audience-tile reveal"}
               >
                 <p className="kicker">{card.dominant ? "Primary" : "Also served"}</p>
                 <h3>{card.title}</h3>
@@ -136,7 +66,7 @@ export function Home() {
           <SectionHead
             kicker="Core services"
             title="One Career. One Narrative. One Integrated Positioning Strategy."
-            deck="Executive career positioning involves considerably more than résumé writing. Each service is an instrument of the same narrative — or, for employers, a separate recruitment practice."
+            deck="Each service is an instrument of the same narrative — or, for employers, a separate recruitment practice."
           />
           <div className="service-board">
             {services.map((service) => (
@@ -144,10 +74,10 @@ export function Home() {
                 key={service.id}
                 className={
                   service.premium
-                    ? "service-card service-card--premium"
+                    ? "service-card service-card--premium reveal"
                     : service.employer
-                      ? "service-card service-card--employer"
-                      : "service-card"
+                      ? "service-card service-card--employer reveal"
+                      : "service-card reveal"
                 }
               >
                 <p className="kicker">{service.kicker}</p>
@@ -179,7 +109,7 @@ export function Home() {
       <CaseStudiesSection />
 
       <section className="section">
-        <div className="container resource-band">
+        <div className="container resource-band reveal">
           <SectionHead
             kicker="Resource"
             title="The Executive Positioning Checklist"
@@ -191,15 +121,15 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section section--tint">
+      <section className="section section--tint" id="two-practices">
         <div className="container">
           <SectionHead
             kicker="Two practices"
             title="Advisory and recruitment, held apart."
-            deck="When someone receives outreach and checks this site, the separation should be unmistakable — and the professionalism should reinforce the original communication."
+            deck="When someone receives outreach and checks this site, the separation should be unmistakable."
           />
           <div className="practices">
-            <Link className="practice" to="/executive-career-positioning">
+            <Link className="practice reveal" to="/executive-career-positioning">
               <p className="kicker">Candidate-paid advisory</p>
               <h3>Career positioning</h3>
               <p>
@@ -208,7 +138,7 @@ export function Home() {
               </p>
               <span className="text-link">Request a Career Assessment</span>
             </Link>
-            <Link className="practice" to="/recruitment">
+            <Link className="practice reveal" to="/recruitment">
               <p className="kicker">Independent recruitment</p>
               <h3>Talent requirements</h3>
               <p>
@@ -225,6 +155,7 @@ export function Home() {
       <section className="cta-band cta-band--finale" id="begin">
         <div className="container cta-band__inner">
           <div>
+            <p className="kicker kicker--on-dark">{practice.tagline}</p>
             <h2>Your Experience Has Value. Make Sure the Market Can See It.</h2>
             <p>
               Whether you&apos;re preparing for your next executive move, repositioning for greater

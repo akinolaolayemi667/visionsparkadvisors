@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { cta, practice, socials } from "../config";
+import { useReveal } from "../hooks/useReveal";
 import { footerLegal, footerMore, footerNav, primaryNav } from "../nav";
 
 function navClass({ isActive }: { isActive: boolean }) {
@@ -27,6 +28,7 @@ function ScrollToTop() {
 export function Layout() {
   const [open, setOpen] = useState(false);
   const location = useLocation();
+  useReveal();
 
   useEffect(() => {
     setOpen(false);
