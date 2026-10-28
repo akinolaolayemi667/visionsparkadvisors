@@ -1,17 +1,20 @@
 :root {
-  /* VisionSpark Advisors: deep navy + restrained gold from the brand mark */
-  --paper: #f7f6f3;
-  --paper-deep: #eceae4;
-  --ink: #0c1a2e;
-  --ink-soft: #243246;
-  --muted: #5c6670;
-  --line: #d8d4cc;
-  --line-strong: #c4bfb5;
-  --accent: #b08a3c;
-  --accent-soft: #e8dfc8;
-  --gold: #c4a35a;
-  --dark: #07111d;
-  --cream: #f7f6f3;
+  /* Extracted from VisionSpark Advisors logo: navy + metallic gold + white */
+  --paper: #f7f8fa;
+  --paper-deep: #e8ecf2;
+  --ink: #001848;
+  --ink-soft: #1a3358;
+  --muted: #4a5d78;
+  --line: #d5dbe5;
+  --line-strong: #b8c2d1;
+  --accent: #d0a840;
+  --accent-soft: #e8e0c0;
+  --gold: #d0a840;
+  --gold-deep: #c09030;
+  --navy: #001848;
+  --navy-mid: #002860;
+  --dark: #000c3c;
+  --cream: #f7f8fa;
   --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
   --sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", sans-serif;
   --header: 76px;
@@ -506,7 +509,7 @@ main {
   align-items: center;
   padding: 28px 0 48px;
   background:
-    radial-gradient(900px 420px at 100% -10%, rgba(110, 44, 38, 0.06), transparent 55%),
+    radial-gradient(900px 420px at 100% -10%, rgba(208, 168, 64, 0.1), transparent 55%),
     var(--paper);
 }
 
@@ -523,7 +526,7 @@ main {
   position: relative;
   min-height: 52vh;
   background:
-    linear-gradient(160deg, #2a2622 0%, #141311 55%, #3a221e 100%);
+    linear-gradient(160deg, var(--navy-mid) 0%, var(--dark) 55%, var(--navy) 100%);
   overflow: hidden;
 }
 
@@ -1324,7 +1327,7 @@ a.service-block:hover h3 {
 
 .footer {
   background: var(--dark);
-  color: #cfc6ba;
+  color: #b8c4d8;
   padding: 72px 0 28px;
   margin-top: auto;
 }
@@ -1469,7 +1472,7 @@ a.service-block:hover h3 {
   max-width: 46rem;
   font-size: 0.9rem;
   line-height: 1.55;
-  color: #c8c1b6;
+  color: #9aabc4;
 }
 
 .footer__bar {
@@ -1477,7 +1480,7 @@ a.service-block:hover h3 {
   flex-wrap: wrap;
   gap: 8px 18px;
   justify-content: space-between;
-  color: #b7b0a6;
+  color: #8496b0;
   font-size: 0.85rem;
 }
 
@@ -1856,7 +1859,7 @@ a.service-block:hover h3 {
 }
 
 .footer__supporting {
-  color: #c8c1b6;
+  color: #9aabc4;
   font-size: 0.9rem;
   line-height: 1.55;
   max-width: 28rem;
@@ -1865,7 +1868,7 @@ a.service-block:hover h3 {
 .page-header--premium {
   padding-bottom: 48px;
   background:
-    radial-gradient(800px 360px at 0% 0%, rgba(110, 44, 38, 0.08), transparent 55%),
+    radial-gradient(800px 360px at 0% 0%, rgba(208, 168, 64, 0.12), transparent 55%),
     var(--paper);
 }
 
@@ -1939,7 +1942,7 @@ a.service-block:hover h3 {
   position: relative;
   min-height: 360px;
   background:
-    linear-gradient(160deg, #2a2622 0%, #141311 55%, #3a221e 100%);
+    linear-gradient(160deg, var(--navy-mid) 0%, var(--dark) 55%, var(--navy) 100%);
   overflow: hidden;
 }
 
@@ -2954,8 +2957,8 @@ a.case-card:hover h3 {
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(90deg, rgba(7, 17, 29, 0.88) 0%, rgba(7, 17, 29, 0.55) 48%, rgba(7, 17, 29, 0.28) 100%),
-    linear-gradient(0deg, rgba(7, 17, 29, 0.72) 0%, transparent 42%);
+    linear-gradient(90deg, rgba(0, 12, 60, 0.9) 0%, rgba(0, 24, 72, 0.58) 48%, rgba(0, 24, 72, 0.28) 100%),
+    linear-gradient(0deg, rgba(0, 12, 60, 0.72) 0%, transparent 42%);
 }
 
 .hero-bleed__content {
@@ -3184,8 +3187,8 @@ a.case-card:hover h3 {
 
   .hero-bleed__shade {
     background:
-      linear-gradient(90deg, rgba(7, 17, 29, 0.92) 0%, rgba(7, 17, 29, 0.62) 42%, rgba(7, 17, 29, 0.18) 72%, rgba(7, 17, 29, 0.08) 100%),
-      linear-gradient(0deg, rgba(7, 17, 29, 0.35) 0%, transparent 35%);
+      linear-gradient(90deg, rgba(0, 12, 60, 0.92) 0%, rgba(0, 24, 72, 0.62) 42%, rgba(0, 24, 72, 0.18) 72%, rgba(0, 24, 72, 0.08) 100%),
+      linear-gradient(0deg, rgba(0, 12, 60, 0.35) 0%, transparent 35%);
   }
 }
 
