@@ -5,6 +5,11 @@ import {
   CandidateJourney,
   PositioningDiagnostic,
 } from "../components/PositioningSections";
+import {
+  ApproachPillars,
+  ConfidentialitySection,
+  TrustSection,
+} from "../components/TrustSections";
 import { cta } from "../config";
 import { howItWorksSteps } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -68,16 +73,27 @@ export function HowItWorks() {
 
       <section className="section">
         <div className="container">
+          <ApproachPillars />
+        </div>
+      </section>
+
+      <section className="section section--tint">
+        <div className="container">
           <CandidateJourney />
         </div>
       </section>
 
       <PositioningDiagnostic />
       <BeforeAfterPositioning />
+      <TrustSection />
+      <ConfidentialitySection />
 
-      <section className="section section--tint">
+      <section className="section">
         <div className="container">
           <Assurance />
+          <p className="quiet-note">
+            Looking for engagement tiers? <Link to="/packages">View packages</Link>
+          </p>
         </div>
       </section>
 

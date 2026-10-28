@@ -5,6 +5,14 @@ import {
   CandidateJourney,
   PositioningDiagnostic,
 } from "../components/PositioningSections";
+import {
+  ApproachPillars,
+  CaseStudiesSection,
+  ConfidentialitySection,
+  PackagesSection,
+  TestimonialsSection,
+  TrustSection,
+} from "../components/TrustSections";
 import { cta, practice } from "../config";
 import { audienceCards, authorityFlow, services } from "../services";
 import { usePageMeta } from "../hooks/usePageMeta";
@@ -168,15 +176,21 @@ export function Home() {
         </div>
       </section>
 
+      <ApproachPillars compact />
+      <PackagesSection compact />
       <CandidateJourney compact />
       <PositioningDiagnostic compact />
       <BeforeAfterPositioning />
+      <TrustSection />
+      <ConfidentialitySection />
+      <TestimonialsSection />
+      <CaseStudiesSection showTemplate />
 
-      <section className="section section--tint">
+      <section className="section">
         <div className="container">
           <SectionHead
-            kicker="Trust"
-            title="Two practices. One standard of evidence."
+            kicker="Two practices"
+            title="Advisory and recruitment, held apart."
             deck="When someone receives outreach and checks this site, the separation should be unmistakable — and the professionalism should reinforce the original communication."
           />
           <div className="practices">

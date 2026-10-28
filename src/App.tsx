@@ -1,6 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import { Layout } from "./components/Layout";
 import { About } from "./pages/About";
+import { CaseStudies, CaseStudyArticle } from "./pages/CaseStudies";
 import { Contact } from "./pages/Contact";
 import { ExecutiveBoard } from "./pages/ExecutiveBoard";
 import { Faq } from "./pages/Faq";
@@ -9,6 +10,7 @@ import { HowItWorks } from "./pages/HowItWorks";
 import { InsightArticle } from "./pages/InsightArticle";
 import { Insights } from "./pages/Insights";
 import { NotFound } from "./pages/NotFound";
+import { Packages } from "./pages/Packages";
 import { Principles } from "./pages/Principles";
 import { Privacy } from "./pages/Privacy";
 import { Recruitment } from "./pages/Recruitment";
@@ -32,6 +34,9 @@ export default function App() {
         <Route path="executive-board" element={<ExecutiveBoard />} />
         <Route path="recruitment" element={<Recruitment />} />
         <Route path="how-it-works" element={<HowItWorks />} />
+        <Route path="packages" element={<Packages />} />
+        <Route path="case-studies" element={<CaseStudies />} />
+        <Route path="case-studies/:slug" element={<CaseStudyArticle />} />
         <Route path="insights" element={<Insights />} />
         <Route path="insights/:slug" element={<InsightArticle />} />
         <Route path="faq" element={<Faq />} />
