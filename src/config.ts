@@ -8,6 +8,9 @@
  * listed under `photos` once files exist in /public/photos/.
  */
 export const practice = {
+  /** Practice / site brand. */
+  brand: "VisionSpark Advisors",
+  /** Principal. */
   name: "Fakorede Joel",
   role: "Executive Career Strategist | Independent Recruiter",
   extendedRole: [
@@ -33,7 +36,7 @@ export const practice = {
   /** Relative to /public. */
   portrait: "/portrait.jpg",
   portraitAvailable: false,
-  portraitAlt: "Professional portrait of Fakorede Joel",
+  portraitAlt: "Professional portrait of Fakorede Joel, VisionSpark Advisors",
   /** Additional approved photographs — add files under /public/photos/ before enabling. */
   photos: [] as { src: string; alt: string }[],
   /** [Professional Email] — set when ready to publish. */
@@ -59,14 +62,14 @@ export const socials: SocialLink[] = [
   {
     id: "linkedin",
     label: "LinkedIn",
-    href: "",
+    href: "https://www.linkedin.com/in/joel-facc",
     placeholder: "[LinkedIn URL]",
     dominant: true,
   },
   {
     id: "instagram",
     label: "Instagram",
-    href: "",
+    href: "https://www.instagram.com/iamjoelfacc",
     placeholder: "[Instagram URL]",
   },
   {
@@ -78,7 +81,7 @@ export const socials: SocialLink[] = [
   {
     id: "x",
     label: "X",
-    href: "",
+    href: "https://x.com/joelliterary",
     placeholder: "[X URL]",
   },
   {

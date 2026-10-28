@@ -4,10 +4,12 @@ import {
   approachPillars,
   caseStudies,
   caseStudyTemplate,
+  clientReferences,
   confidentiality,
   packageNote,
   packages,
   publishCaseStudies,
+  publishClientReferences,
   publishTestimonials,
   testimonials,
   trustIndicators,
@@ -122,9 +124,10 @@ export function ConfidentialitySection() {
 }
 
 export function TestimonialsSection() {
-  const ready = publishTestimonials && testimonials.length > 0;
+  const quotesReady = publishTestimonials && testimonials.length > 0;
+  const refsReady = publishClientReferences && clientReferences.length > 0;
 
-  if (!ready) {
+  if (!quotesReady && !refsReady) {
     return (
       <section className="section" id="testimonials" aria-labelledby="testimonials-heading">
         <div className="container">
@@ -143,31 +146,58 @@ export function TestimonialsSection() {
 
   return (
     <section className="section" id="testimonials">
-      <div className="container">
-        <SectionHead
-          kicker="Client voice"
-          title="Experiences shared by clients."
-          deck="Each entry reflects a verified engagement. LinkedIn verification is included where the client has authorised it."
-        />
-        <div className="testimonial-grid">
-          {testimonials.map((item) => (
-            <figure className="testimonial-card" key={item.id}>
-              <blockquote>{item.quote}</blockquote>
-              <figcaption>
-                <strong>{item.name}</strong>
-                <span>
-                  {item.level} · {item.industry}
-                </span>
-                <span>{item.service}</span>
-                {item.linkedIn ? (
-                  <a href={item.linkedIn} rel="noopener noreferrer">
-                    LinkedIn verification
-                  </a>
-                ) : null}
-              </figcaption>
-            </figure>
-          ))}
-        </div>
+      <div className="container stack">
+        {refsReady ? (
+          <div>
+            <SectionHead
+              kicker="Client references"
+              title="Professionals who have engaged the practice."
+              deck="Names appear with permission as references. Engagement details and quotes are published only when supplied and approved — never invented."
+            />
+            <ul className="reference-list">
+              {clientReferences.map((item) => (
+                <li key={item.id}>
+                  <strong>{item.name}</strong>
+                  {item.note ? <span>{item.note}</span> : null}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ) : null}
+
+        {quotesReady ? (
+          <div>
+            <SectionHead
+              kicker="Client voice"
+              title="Experiences shared by clients."
+              deck="Each entry reflects a verified engagement. LinkedIn verification is included where the client has authorised it."
+            />
+            <div className="testimonial-grid">
+              {testimonials.map((item) => (
+                <figure className="testimonial-card" key={item.id}>
+                  <blockquote>{item.quote}</blockquote>
+                  <figcaption>
+                    <strong>{item.name}</strong>
+                    <span>
+                      {item.level} · {item.industry}
+                    </span>
+                    <span>{item.service}</span>
+                    {item.linkedIn ? (
+                      <a href={item.linkedIn} rel="noopener noreferrer">
+                        LinkedIn verification
+                      </a>
+                    ) : null}
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+        ) : (
+          <p className="deck">
+            Written testimonials and detailed engagement outcomes can be added here when you supply
+            them.
+          </p>
+        )}
       </div>
     </section>
   );

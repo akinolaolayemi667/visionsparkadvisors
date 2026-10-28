@@ -8,7 +8,7 @@ const sections = [
     id: "who",
     title: "Who I Am",
     body: [
-      `${practice.name} is an Executive Career Strategist and Independent Recruiter. The practice combines executive search work with candidate-paid career strategy — held as separate activities, with clear boundaries.`,
+      `${practice.name} is an Executive Career Strategist and Independent Recruiter operating as ${practice.brand}. The practice combines executive search work with candidate-paid career strategy — held as separate activities, with clear boundaries.`,
       "If you are verifying a message you received, this page is intended to make the identity, purpose and standards of that outreach easier to assess.",
     ],
   },

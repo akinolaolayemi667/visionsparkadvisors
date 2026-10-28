@@ -33,8 +33,8 @@ const expectations = [
 
 export function About() {
   usePageMeta(
-    "About Fakorede Joel — Executive Career Strategist & Independent Recruiter",
-    "Where talent, positioning and opportunity meet. Fakorede Joel works at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy.",
+    "About — VisionSpark Advisors | Fakorede Joel",
+    "VisionSpark Advisors — where talent, positioning and opportunity meet. Fakorede Joel works at the intersection of recruitment, executive career positioning, résumé/CV strategy, LinkedIn and job-search strategy.",
     { path: "/about" },
   );
 
@@ -43,14 +43,14 @@ export function About() {
       <header className="page-header">
         <div className="container about-hero">
           <div className="about-hero__copy">
-            <p className="kicker">Independent practice</p>
+            <p className="kicker">{practice.brand}</p>
             <h1>Where Talent, Positioning and Opportunity Meet</h1>
             <p className="lede">
               I work at the intersection of recruitment, career strategy and professional
               positioning.
             </p>
             <p className="role" style={{ marginTop: 28 }}>
-              {practice.role}
+              {practice.name} · {practice.role}
             </p>
           </div>
           <div className="about-hero__media">

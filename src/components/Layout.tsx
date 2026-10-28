@@ -55,9 +55,12 @@ export function Layout() {
       <ScrollToTop />
       <header className="header">
         <div className="container header__bar">
-          <Link to="/" className="brand" aria-label={`${practice.name} home`}>
+          <Link to="/" className="brand" aria-label={`${practice.brand} home`}>
             <span className="brand__mark" aria-hidden="true" />
-            <span className="brand__name">{practice.name}</span>
+            <span className="brand__text">
+              <span className="brand__name">{practice.brand}</span>
+              <span className="brand__person">{practice.name}</span>
+            </span>
           </Link>
           <nav className="nav" aria-label="Primary">
             {primaryNav.map((item) => (
@@ -149,8 +152,10 @@ export function Layout() {
       <footer className="footer" inert={open || undefined}>
         <div className="container">
           <div className="footer__identity">
-            <p className="footer__name">{practice.name}</p>
-            <p className="footer__role">{practice.role}</p>
+            <p className="footer__name">{practice.brand}</p>
+            <p className="footer__role">
+              {practice.name} · {practice.role}
+            </p>
             {practice.email ? (
               <p>
                 <a href={`mailto:${practice.email}`}>{practice.email}</a>
@@ -217,11 +222,12 @@ export function Layout() {
             Career advisory is an independent professional service. No interview, placement, Board
             appointment, executive appointment, or employment outcome is guaranteed. Purchasing
             advisory services is never a condition of recruitment consideration. ContactOut, where
-            used, is a professional sourcing/research platform — not an employer of {practice.name}.
+            used, is a professional sourcing/research platform — not an employer of {practice.name}{" "}
+            or {practice.brand}.
           </p>
           <div className="footer__bar">
             <span>
-              © {new Date().getFullYear()} {practice.name}. All Rights Reserved.
+              © {new Date().getFullYear()} {practice.brand}. All Rights Reserved.
             </span>
             <span>Independent practice</span>
           </div>

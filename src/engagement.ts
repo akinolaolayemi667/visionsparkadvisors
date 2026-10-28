@@ -137,11 +137,31 @@ export type Testimonial = {
   linkedIn?: string;
 };
 
-/** Add verified testimonials here. Leave empty until supplied. */
+/**
+ * Named client references only — no invented quotes, outcomes or job claims.
+ * Add level / service / note when the client has authorised fuller detail.
+ */
+export type ClientReference = {
+  id: string;
+  name: string;
+  /** Optional — only when supplied and approved. */
+  note?: string;
+};
+
+export const clientReferences: ClientReference[] = [
+  { id: "mark-jones", name: "Mark Jones" },
+  { id: "harold-wodlinger", name: "Harold Wodlinger" },
+  { id: "sonia-rose", name: "Sonia Rose" },
+];
+
+/** Add verified testimonials (with quotes) here when supplied. */
 export const testimonials: Testimonial[] = [];
 
-/** When true and testimonials exist, the section publishes. */
+/** When true and testimonials exist, quote cards publish. */
 export const publishTestimonials = false;
+
+/** When true and clientReferences exist, the name list publishes. */
+export const publishClientReferences = true;
 
 export type CaseStudy = {
   id: string;

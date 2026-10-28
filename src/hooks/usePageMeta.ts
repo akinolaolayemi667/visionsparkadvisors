@@ -56,7 +56,7 @@ export function usePageMeta(
     ensureMeta("property", "og:description", description);
     ensureMeta("property", "og:type", options?.type ?? "website");
     ensureMeta("property", "og:url", url);
-    ensureMeta("property", "og:site_name", practice.name);
+    ensureMeta("property", "og:site_name", practice.brand);
     ensureMeta("name", "twitter:card", "summary");
     ensureMeta("name", "twitter:title", title);
     ensureMeta("name", "twitter:description", description);

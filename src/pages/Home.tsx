@@ -20,8 +20,8 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Home() {
   usePageMeta(
-    "Fakorede Joel — Executive Career Strategist & Independent Recruiter",
-    "Position your experience for the opportunities you’re ready to lead. Executive career strategy, résumé/CV and LinkedIn positioning, job-search advisory, and independent recruitment — evidence-led and confidential.",
+    "VisionSpark Advisors — Fakorede Joel | Executive Career Strategist & Independent Recruiter",
+    "VisionSpark Advisors: executive career positioning, résumé/CV and LinkedIn strategy, job-search advisory, and independent recruitment — evidence-led and confidential.",
     { path: "/" },
   );
 
@@ -32,11 +32,14 @@ export function Home() {
           <Portrait priority />
         </div>
         <div className="hero__copy">
-          <p className="kicker">{practice.name}</p>
+          <p className="kicker">{practice.brand}</p>
           <h1 className="hero__title">
             Position Your Experience for the Opportunities You’re Ready to Lead.
           </h1>
-          <p className="role">{practice.supporting}</p>
+          <p className="role">
+            {practice.name} · {practice.role}
+          </p>
+          <p className="role role--support">{practice.supporting}</p>
           <div className="hero__prose">
             <p className="lede">
               Strong careers deserve strong positioning.
