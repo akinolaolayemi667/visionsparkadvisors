@@ -56,7 +56,18 @@ export function Layout() {
       <header className="header">
         <div className="container header__bar">
           <Link to="/" className="brand" aria-label={`${practice.brand} home`}>
-            <span className="brand__mark" aria-hidden="true" />
+            {practice.logoAvailable ? (
+              <img
+                className="brand__logo"
+                src={practice.logo}
+                alt=""
+                width={220}
+                height={72}
+                decoding="async"
+              />
+            ) : (
+              <span className="brand__mark" aria-hidden="true" />
+            )}
             <span className="brand__text">
               <span className="brand__name">{practice.brand}</span>
               <span className="brand__person">{practice.name}</span>
@@ -152,10 +163,23 @@ export function Layout() {
       <footer className="footer" inert={open || undefined}>
         <div className="container">
           <div className="footer__identity">
-            <p className="footer__name">{practice.brand}</p>
+            {practice.logoAvailable ? (
+              <img
+                className="footer__logo"
+                src={practice.logo}
+                alt={practice.logoAlt}
+                width={280}
+                height={92}
+                loading="lazy"
+                decoding="async"
+              />
+            ) : (
+              <p className="footer__name">{practice.brand}</p>
+            )}
             <p className="footer__role">
               {practice.name} · {practice.role}
             </p>
+            {practice.tagline ? <p className="footer__tagline">{practice.tagline}</p> : null}
             {practice.email ? (
               <p>
                 <a href={`mailto:${practice.email}`}>{practice.email}</a>

@@ -20,6 +20,7 @@ export const practice = {
     "LinkedIn Positioning Strategist",
   ],
   statement: "Positioning Talent. Strengthening Careers. Connecting Leadership With Opportunity.",
+  tagline: "Insight · Strategy · Growth",
   brandMessage:
     "I help professionals communicate their career value with greater clarity, evidence and strategic relevance — and I help organizations connect with talent aligned with their leadership and business needs.",
   differentiator: [
@@ -35,8 +36,11 @@ export const practice = {
   siteUrl: "https://visionsparkadvisors.vercel.app",
   /** Relative to /public. */
   portrait: "/portrait.jpg",
-  portraitAvailable: false,
+  portraitAvailable: true,
   portraitAlt: "Professional portrait of Fakorede Joel, VisionSpark Advisors",
+  logo: "/logo.jpg",
+  logoAvailable: true,
+  logoAlt: "VisionSpark Advisors logo — Insight, Strategy, Growth",
   /** Additional approved photographs — add files under /public/photos/ before enabling. */
   photos: [] as { src: string; alt: string }[],
   email: "joelfacco.positioning@gmail.com",
