@@ -256,7 +256,7 @@ export function SampleWorksSection() {
                     className={sample.pdf ? "btn btn--ghost btn--small" : "btn btn--small"}
                     to={`/case-studies/${sample.caseStudySlug}`}
                   >
-                    Write-up
+                    Case study
                   </Link>
                 ) : null}
               </div>

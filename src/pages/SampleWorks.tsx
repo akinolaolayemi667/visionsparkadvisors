@@ -52,7 +52,7 @@ export function SampleWorks() {
                         className={sample.pdf ? "btn btn--ghost" : "btn"}
                         to={`/case-studies/${sample.caseStudySlug}`}
                       >
-                        Read engagement write-up
+                        Case study
                       </Link>
                     ) : null}
                   </div>

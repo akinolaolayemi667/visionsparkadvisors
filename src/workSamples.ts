@@ -40,11 +40,21 @@ export const workSamples: WorkSample[] = [
     caseStudySlug: "international-executive-linkedin-positioning",
   },
   {
+    id: "gerd-holl-linkedin-writeup",
+    client: "Gerd Holl",
+    instrument: "LinkedIn positioning write-up",
+    summary:
+      "Engagement write-up for LinkedIn headline, About and experience positioning that preserved employment accuracy while opening advisory and Board visibility.",
+    pdf: "/samples/gerd-holl-linkedin-writeup.pdf",
+    caseStudySlug: "international-executive-linkedin-positioning",
+  },
+  {
     id: "harold-wodlinger-writeup",
     client: "Harold M. Wodlinger, Ph.D.",
     instrument: "Board-ready CV & governance narrative",
     summary:
       "Independent Board Director / MedTech executive positioning — Board stewardship and commercialization leadership elevated for nomination-committee reading.",
+    pdf: "/samples/harold-wodlinger-engagement-writeup.pdf",
     caseStudySlug: "medtech-independent-board-director",
   },
   {
@@ -53,6 +63,7 @@ export const workSamples: WorkSample[] = [
     instrument: "Chair & Board Director profile",
     summary:
       "Chair / NED narrative and standalone Board Director profile drawn from a long UK and international executive career across leisure, hospitality and enterprise leadership.",
+    pdf: "/samples/mark-jones-engagement-writeup.pdf",
     caseStudySlug: "chair-board-director-strategic-advisor",
   },
   {
@@ -61,6 +72,7 @@ export const workSamples: WorkSample[] = [
     instrument: "Board & Strategic Adviser profile",
     summary:
       "Energy executive Board profile translating asset, capital and operational scale into governance-relevant value highlights.",
+    pdf: "/samples/lance-berg-engagement-writeup.pdf",
     caseStudySlug: "energy-board-strategic-adviser",
   },
 ];

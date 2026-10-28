@@ -95,7 +95,9 @@ export function CaseStudyArticle() {
 
   if (!publishCaseStudies || !study) return <NotFound />;
 
-  const relatedSample = workSamples.find((sample) => sample.caseStudySlug === study.slug);
+  const relatedSamples = workSamples.filter(
+    (sample) => sample.caseStudySlug === study.slug && sample.pdf,
+  );
 
   return (
     <article className="article">
@@ -122,13 +124,19 @@ export function CaseStudyArticle() {
             </div>
           ) : null}
         </dl>
-        {relatedSample?.pdf ? (
-          <p className="quiet-note" style={{ marginTop: 28 }}>
-            Related demonstration PDF:{" "}
-            <a href={relatedSample.pdf} target="_blank" rel="noopener noreferrer">
-              {relatedSample.instrument} — {relatedSample.client}
-            </a>
-          </p>
+        {relatedSamples.length ? (
+          <div className="quiet-note" style={{ marginTop: 28 }}>
+            <p style={{ marginBottom: 8 }}>Related demonstration PDFs:</p>
+            <ul>
+              {relatedSamples.map((sample) => (
+                <li key={sample.id}>
+                  <a href={sample.pdf} target="_blank" rel="noopener noreferrer">
+                    {sample.instrument} — {sample.client}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
         ) : null}
         <footer className="article__end">
           <Link className="btn" to={cta.assessment.href}>
