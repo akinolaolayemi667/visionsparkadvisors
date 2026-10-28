@@ -1,15 +1,15 @@
 import { Link, useParams } from "react-router-dom";
 import { practice } from "../config";
 import { usePageMeta } from "../hooks/usePageMeta";
-import { perspectives } from "../perspectives";
+import { insights } from "../insights";
 import { NotFound } from "./NotFound";
 
 export function InsightArticle() {
   const { slug } = useParams();
-  const index = perspectives.findIndex((item) => item.slug === slug);
-  const article = index >= 0 ? perspectives[index] : undefined;
-  const previous = index > 0 ? perspectives[index - 1] : undefined;
-  const next = index >= 0 && index < perspectives.length - 1 ? perspectives[index + 1] : undefined;
+  const index = insights.findIndex((item) => item.slug === slug);
+  const article = index >= 0 ? insights[index] : undefined;
+  const previous = index > 0 ? insights[index - 1] : undefined;
+  const next = index >= 0 && index < insights.length - 1 ? insights[index + 1] : undefined;
 
   usePageMeta(
     article ? `${article.title} — Fakorede Joel` : "Page not found — Fakorede Joel",
@@ -18,12 +18,14 @@ export function InsightArticle() {
 
   if (!article) return <NotFound />;
 
-  const pullAt = Math.min(2, article.paragraphs.length - 1);
+  const pullAt = Math.min(1, article.paragraphs.length - 1);
 
   return (
     <article className="article">
       <div className="narrow">
-        <p className="kicker">{article.kicker}</p>
+        <p className="kicker">
+          <Link to="/insights">{article.category}</Link>
+        </p>
         <h1>{article.title}</h1>
         <p className="dek">{article.dek}</p>
         <p className="byline">
@@ -42,7 +44,7 @@ export function InsightArticle() {
         <footer className="article__end">
           <p>If this is the work in front of you, the next step is a direct conversation.</p>
           <p style={{ marginTop: 16 }}>
-            <Link className="btn" to="/contact?intent=assessment">
+            <Link className="btn" to="/assessment">
               Request a Career Assessment
             </Link>
           </p>

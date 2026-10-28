@@ -1,30 +1,63 @@
+import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { PageHeader } from "../components/Blocks";
 import { usePageMeta } from "../hooks/usePageMeta";
-import { perspectives } from "../perspectives";
+import { insightCategories, insights } from "../insights";
 
 export function Insights() {
+  const [category, setCategory] = useState<string>("All");
+
   usePageMeta(
     "Insights — Fakorede Joel",
-    "Practice notes on executive positioning, evidence, board careers, résumés, and how search professionals read a career.",
+    "Professional insights on executive careers, résumé/CV strategy, LinkedIn positioning, Board careers, job-search strategy, executive search and recruitment.",
+  );
+
+  const filtered = useMemo(
+    () =>
+      category === "All" ? insights : insights.filter((item) => item.category === category),
+    [category],
   );
 
   return (
     <>
       <PageHeader
         kicker="Insights"
-        title="Perspectives on positioning."
-        lede="Short essays on how leadership value becomes legible. They describe the way the practice thinks. They are not case studies, and they are not promises of an outcome."
+        title="Perspectives on executive positioning."
+        lede="Practice notes for leaders, boards and hiring decision-makers. They describe how careers become legible in competitive markets. They are not case studies, and they are not promises of an outcome."
       />
       <section className="page-section">
         <div className="container">
-          {perspectives.map((note) => (
-            <Link className="note" to={`/insights/${note.slug}`} key={note.slug}>
-              <p className="kicker">{note.kicker}</p>
-              <h2>{note.title}</h2>
-              <p>{note.dek}</p>
-            </Link>
-          ))}
+          <div className="insight-filters" role="toolbar" aria-label="Insight categories">
+            <button
+              type="button"
+              className={category === "All" ? "is-active" : undefined}
+              onClick={() => setCategory("All")}
+            >
+              All
+            </button>
+            {insightCategories.map((item) => (
+              <button
+                key={item}
+                type="button"
+                className={category === item ? "is-active" : undefined}
+                onClick={() => setCategory(item)}
+              >
+                {item}
+              </button>
+            ))}
+          </div>
+          <div className="insight-index">
+            {filtered.map((note) => (
+              <Link className="note" to={`/insights/${note.slug}`} key={note.slug}>
+                <p className="kicker">{note.category}</p>
+                <h2>{note.title}</h2>
+                <p>{note.dek}</p>
+              </Link>
+            ))}
+          </div>
+          {filtered.length === 0 ? (
+            <p className="deck">No insights in this category yet.</p>
+          ) : null}
         </div>
       </section>
     </>

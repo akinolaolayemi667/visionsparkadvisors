@@ -226,45 +226,4 @@ export const howItWorksSteps = [
   },
 ];
 
-export const faqs: { q: string; a: string }[] = [
-  {
-    q: "Who do you work with?",
-    a: "Primarily executives and senior leaders — C-suite, presidents, managing directors, vice presidents and business-unit leaders — as well as Board directors and professionals preparing for Board or portfolio careers. I also work with directors, managers, federal and public-sector professionals, and, selectively, early-career talent in a separate practice area.",
-  },
-  {
-    q: "Is this résumé writing?",
-    a: "No. A résumé or CV is one instrument of a market position. The work begins with how experience, leadership value and career potential should be understood by a competitive market — then aligns documents, LinkedIn, search strategy and interview positioning to that narrative.",
-  },
-  {
-    q: "How is recruitment different from career advisory?",
-    a: "In recruitment, I source, assess or consider candidates for genuine employment opportunities. In career advisory, an individual engages me independently for positioning, résumé/CV, LinkedIn, job-search strategy or related counsel. Purchasing advisory is never a condition of recruitment consideration.",
-  },
-  {
-    q: "If I buy a service, will you place me in a role?",
-    a: "No. Career advisory is an independent professional service. No interview, job placement, Board appointment or executive appointment is guaranteed. Buying advice does not create recruitment consideration, and declining advice does not remove it.",
-  },
-  {
-    q: "Can employers contact you about hiring?",
-    a: "Yes. Organizations and hiring decision-makers can discuss talent requirements directly. Independent recruitment covers executive and professional search support, talent mapping, sourcing, assessment and candidate engagement for genuine mandates.",
-  },
-  {
-    q: "How do I start?",
-    a: "Request a career assessment, inquire about a specific service, submit a résumé/CV for consideration against genuine opportunities, or discuss a talent requirement if you are hiring. Each route is read differently and treated confidentially.",
-  },
-  {
-    q: "How do you handle confidentiality?",
-    a: "Career enquiries and hiring mandates are treated as confidential. I do not publish client names as proof of the practice. An introduction or submission happens only with a clear understanding of what may be shared.",
-  },
-  {
-    q: "Do you guarantee interviews or outcomes?",
-    a: "No. Recommendations are based on professional assessment and the information available. No employment outcome, interview, placement or appointment is guaranteed.",
-  },
-  {
-    q: "Do you work with early-career professionals?",
-    a: "Selectively, and in a separate section of the practice, so the executive character of the brand remains intact. The evidence standard is the same; the scope is fitted to the stage of the career.",
-  },
-  {
-    q: "What should I include in a first message?",
-    a: "Your level or context, the nature of the enquiry, and a few sentences on what you want clarified. For candidacies, a current résumé/CV and any confidentiality constraints are useful. Avoid information a first conversation does not need.",
-  },
-];
+export { faqs } from "./faq";

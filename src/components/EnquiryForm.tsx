@@ -18,6 +18,7 @@ const contexts = [
 
 const natures = [
   "Career assessment",
+  "Reply to professional outreach",
   "Executive career positioning",
   "Résumé / CV positioning",
   "LinkedIn positioning",
@@ -36,6 +37,8 @@ const natures = [
 const intentToNature: Record<string, string> = {
   assessment: "Career assessment",
   advisory: "Career assessment",
+  outreach: "Reply to professional outreach",
+  contactout: "Reply to professional outreach",
   positioning: "Executive career positioning",
   resume: "Résumé / CV positioning",
   linkedin: "LinkedIn positioning",

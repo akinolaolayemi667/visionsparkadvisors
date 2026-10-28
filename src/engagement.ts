@@ -49,7 +49,7 @@ export const packages: PackageTier[] = [
       "Resume/CV positioning",
       "Final review",
     ],
-    cta: { href: "/contact?intent=assessment", label: "Request Details" },
+    cta: { href: "/assessment", label: "Request Details" },
   },
   {
     id: "executive",

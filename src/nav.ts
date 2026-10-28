@@ -44,10 +44,12 @@ export const footerColumns = [
   {
     label: "Correspondence",
     links: [
-      { to: "/contact?intent=assessment", label: "Career Assessment" },
+      { to: "/assessment", label: "Career Assessment" },
+      { to: "/executive-positioning-checklist", label: "Positioning Checklist" },
       { to: "/recruitment#hiring-enquiry", label: "Hiring Requirement" },
       { to: "/contact?intent=board", label: "Executive Positioning" },
       { to: "/contact?intent=candidacy", label: "Submit a Résumé/CV" },
+      { to: "/executive-opportunities", label: "Outreach verification" },
       { to: "/contact", label: "Contact" },
     ],
   },

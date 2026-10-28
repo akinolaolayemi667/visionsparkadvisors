@@ -1,11 +1,12 @@
+import { Link } from "react-router-dom";
 import { CtaBand, PageHeader } from "../components/Blocks";
-import { faqs } from "../services";
+import { faqs } from "../faq";
 import { usePageMeta } from "../hooks/usePageMeta";
 
 export function Faq() {
   usePageMeta(
     "FAQ — Fakorede Joel",
-    "Answers on who Fakorede Joel works with, how recruitment differs from career advisory, confidentiality, and how to begin.",
+    "Answers on outreach, confidentiality, career assessment, Board positioning, guarantees, and how recruitment differs from career advisory.",
   );
 
   return (
@@ -25,6 +26,14 @@ export function Faq() {
               </details>
             ))}
           </div>
+          <p className="quiet-note">
+            Received outreach?{" "}
+            <Link to="/executive-opportunities">Verify the message and how I work</Link>
+            {" · "}
+            <Link to="/principles">Principles</Link>
+            {" · "}
+            <Link to="/privacy">Privacy</Link>
+          </p>
         </div>
       </section>
       <CtaBand />

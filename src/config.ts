@@ -27,9 +27,17 @@ export const practice = {
 };
 
 export const cta = {
-  assessment: { href: "/contact?intent=assessment", label: "Request a Career Assessment" },
+  assessment: { href: "/assessment", label: "Request a Career Assessment" },
   talent: { href: "/contact?intent=talent", label: "Discuss a Talent Requirement" },
   hiring: { href: "/recruitment#hiring-enquiry", label: "Discuss Your Hiring Requirement" },
   executive: { href: "/contact?intent=board", label: "Discuss My Executive Positioning" },
   services: { href: "/#services", label: "Explore My Services" },
+  checklist: {
+    href: "/executive-positioning-checklist",
+    label: "Executive Positioning Checklist",
+  },
+  outreach: {
+    href: "/executive-opportunities",
+    label: "Verify outreach",
+  },
 };

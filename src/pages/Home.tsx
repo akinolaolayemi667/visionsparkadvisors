@@ -187,6 +187,19 @@ export function Home() {
       <CaseStudiesSection showTemplate />
 
       <section className="section">
+        <div className="container resource-band">
+          <SectionHead
+            kicker="Resource"
+            title="The Executive Positioning Checklist"
+            deck="Fifteen questions to determine whether your résumé, LinkedIn and career narrative reflect your actual leadership value."
+          />
+          <Link className="btn" to={cta.checklist.href}>
+            {cta.checklist.label}
+          </Link>
+        </div>
+      </section>
+
+      <section className="section section--tint">
         <div className="container">
           <SectionHead
             kicker="Two practices"

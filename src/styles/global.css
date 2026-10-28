@@ -1,17 +1,18 @@
 :root {
-  --paper: #f6f4f0;
-  --paper-deep: #ece7df;
-  --ink: #1a1814;
-  --ink-soft: #3c3833;
-  --muted: #5c564f;
-  --line: #ddd6cb;
-  --line-strong: #c9c0b4;
-  --accent: #6e2c26;
-  --accent-soft: #e4c4bc;
-  --dark: #141311;
-  --cream: #f3efe6;
-  --serif: "Instrument Serif", Georgia, "Iowan Old Style", "Palatino Linotype", serif;
-  --sans: "Instrument Sans", "Segoe UI", sans-serif;
+  /* Executive advisory palette: deep navy / charcoal / warm white / restrained bronze */
+  --paper: #f7f6f3;
+  --paper-deep: #eceae4;
+  --ink: #0f1a24;
+  --ink-soft: #2a3540;
+  --muted: #5c6670;
+  --line: #d8d4cc;
+  --line-strong: #c4bfb5;
+  --accent: #8c734b;
+  --accent-soft: #e8dfd0;
+  --dark: #0b1218;
+  --cream: #f7f6f3;
+  --serif: "Source Serif 4", "Iowan Old Style", Georgia, serif;
+  --sans: "Source Sans 3", "Segoe UI", "Helvetica Neue", sans-serif;
   --header: 76px;
   --mobile-cta: 52px;
   color-scheme: light;
@@ -2503,7 +2504,202 @@ a.case-card:hover h3 {
   max-width: 40rem;
 }
 
+.insight-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 28px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.insight-filters button {
+  appearance: none;
+  border: 1px solid var(--line);
+  background: transparent;
+  color: var(--ink-soft);
+  padding: 8px 12px;
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+}
+
+.insight-filters button:hover,
+.insight-filters button.is-active {
+  border-color: var(--ink);
+  color: var(--ink);
+  background: var(--paper-deep);
+}
+
+.insight-index .note + .note {
+  margin-top: 0;
+}
+
+.outreach-block {
+  padding: 28px 0;
+  border-top: 1px solid var(--line);
+  max-width: 42rem;
+}
+
+.outreach-block .section-title {
+  margin-bottom: 14px;
+}
+
+.outreach-block p {
+  color: var(--ink-soft);
+}
+
+.resource-band .btn {
+  margin-top: 8px;
+}
+
+.wizard-steps {
+  list-style: none;
+  margin: 0 0 28px;
+  padding: 0;
+  display: grid;
+  gap: 8px;
+}
+
+.wizard-steps li {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  font-size: 0.9rem;
+  color: var(--muted);
+  padding-bottom: 8px;
+  border-bottom: 1px solid transparent;
+}
+
+.wizard-steps li span {
+  font-variant-numeric: tabular-nums;
+  color: var(--accent);
+  min-width: 1.6rem;
+}
+
+.wizard-steps li.is-active {
+  color: var(--ink);
+  border-bottom-color: var(--ink);
+  font-weight: 600;
+}
+
+.wizard-steps li.is-done {
+  color: var(--ink-soft);
+}
+
+.wizard-panel {
+  border: none;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.wizard-panel legend {
+  font-family: var(--serif);
+  font-size: 1.55rem;
+  margin-bottom: 18px;
+  padding: 0;
+}
+
+.field-hint,
+.field-label {
+  margin: 0 0 10px;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+}
+
+.check-grid,
+.radio-grid {
+  display: grid;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.yesno {
+  display: flex;
+  gap: 16px;
+}
+
+.check--inline {
+  margin: 0;
+}
+
+.form-row--triple {
+  align-items: start;
+}
+
+.wizard-actions {
+  margin-top: 28px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+
+.checklist-layout {
+  max-width: 40rem;
+}
+
+.checklist-ol {
+  list-style: none;
+  margin: 28px 0 0;
+  padding: 0;
+  counter-reset: check;
+}
+
+.checklist-ol li {
+  counter-increment: check;
+  display: grid;
+  grid-template-columns: 2rem 1.5rem 1fr;
+  gap: 12px;
+  padding: 16px 0;
+  border-top: 1px solid var(--line);
+  align-items: start;
+}
+
+.checklist-ol li::before {
+  content: counter(check, decimal-leading-zero);
+  font-family: var(--serif);
+  color: var(--accent);
+  font-size: 1.1rem;
+}
+
+.checklist-ol li span {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid var(--line-strong);
+  margin-top: 6px;
+}
+
+.checklist-ol p {
+  margin: 0;
+  color: var(--ink-soft);
+}
+
+.checklist-doc {
+  padding-top: 8px;
+}
+
 @media (min-width: 720px) {
+  .wizard-steps {
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+  }
+
+  .wizard-steps li {
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+
+  .check-grid,
+  .radio-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .form-row--triple {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+
   .pillar-grid {
     grid-template-columns: 1fr 1fr;
     gap: 0 36px;
@@ -2566,12 +2762,21 @@ a.case-card:hover h3 {
   .footer,
   .hero__actions,
   .cta-band,
-  .menu-btn {
+  .menu-btn,
+  .mobile-cta,
+  .form-actions,
+  .page-header,
+  .checklist-form {
     display: none !important;
   }
 
   body {
     background: white;
     color: black;
+  }
+
+  .checklist-result,
+  .checklist-doc {
+    display: block !important;
   }
 }

@@ -4,6 +4,7 @@ import { usePageMeta } from "../hooks/usePageMeta";
 
 const paths = [
   { intent: "assessment", label: "Career assessment" },
+  { intent: "outreach", label: "Outreach reply" },
   { intent: "resume", label: "Resume/CV" },
   { intent: "linkedin", label: "LinkedIn" },
   { intent: "search-strategy", label: "Job search" },
@@ -20,7 +21,11 @@ const copy: Record<string, { title: string; text: string }> = {
   },
   assessment: {
     title: "Request a career assessment.",
-    text: "Share your level, the market you have in view, and what you want clarified — direction, narrative, documents, search, or a decision. Scope and fees are agreed before advisory work begins.",
+    text: "Share your level, the market you have in view, and what you want clarified — direction, narrative, documents, search, or a decision. For the structured multi-step form, use the Career Assessment page. Scope and fees are agreed before advisory work begins.",
+  },
+  outreach: {
+    title: "Continue our conversation.",
+    text: "You received a professional message and want to reply. Say whether your interest is a recruitment conversation, a career-market discussion, networking, or simply to clarify the outreach. No purchase is required to continue.",
   },
   resume: {
     title: "Enquire about Resume/CV positioning.",
@@ -98,6 +103,18 @@ export function Contact() {
             </p>
             <p>If I am not the right person, I will say so.</p>
             <p>
+              {active === "assessment" || active === "advisory" ? (
+                <>
+                  Prefer the structured form? <Link to="/assessment">Career Assessment</Link>
+                  {" · "}
+                </>
+              ) : null}
+              {active === "outreach" ? (
+                <>
+                  <Link to="/executive-opportunities">Outreach verification page</Link>
+                  {" · "}
+                </>
+              ) : null}
               {active === "talent" || active === "search" ? (
                 <>
                   Prefer the structured employer form?{" "}
